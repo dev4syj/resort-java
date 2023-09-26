@@ -6,19 +6,20 @@ import com.resort.domain.User;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 public class UserDto {
 
 	// 회원정보 요청 Dto
 	@AllArgsConstructor
-	@NoArgsConstructor(access = AccessLevel.PROTECTED)
+	@NoArgsConstructor
 	@Builder
 	@Getter
+	@Setter
 	public static class Request {
 		
 		private Long userId;
@@ -27,7 +28,7 @@ public class UserDto {
 		@NotBlank(message = "아이디는 필수 입력 값입니다.")
 		private String id;
 
-		@Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)[A-Za-z\\d@#$%^&+=!]{8,20}$", message = "비밀번호는 8~20자로 영어 대소문자, 숫자만 허용됩니다. 특수문자는 @#$%^&+=!만 허용됩니다.")
+		@Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)[A-Za-z\\d@#$%^&+=!]{8,20}$", message = "비밀번호는 8~20자로 영어 대소문자, 숫자, @#$%^&+=!만 허용됩니다.")
 		@NotBlank(message = "비밀번호는 필수 입력 값입니다.")
 		private String password;
 
@@ -35,11 +36,10 @@ public class UserDto {
 		@NotBlank(message = "이름은 필수 입력 값입니다.")
 		private String name;
 
-		@Pattern(regexp = "^\\d{11}$", message = "숫자 11자리만 허용됩니다.")
+		@Pattern(regexp = "^\\d{11,11}$", message = "전화번호는 숫자 11자리만 허용됩니다.")
 		@NotBlank(message = "전화번호는 필수 입력 값입니다.")
 		private String phone;
 
-		@Pattern(regexp = "^(?!.*[\\'\\\";])([a-zA-Z0-9ㄱ-힣@-]+){1,50}$\r\n", message = "숫자 11자리만 허용됩니다.")
 		@NotBlank(message = "주소는 필수 입력 값입니다.")
 		private String address;
 

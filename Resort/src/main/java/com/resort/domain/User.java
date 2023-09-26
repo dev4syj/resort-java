@@ -7,16 +7,17 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@RequiredArgsConstructor
 @Entity
 @Getter
+@Setter
 @Builder
 public class User {
 
@@ -30,7 +31,7 @@ public class User {
 
 	// 비밀번호는 JSON 직렬화 무시하여 클라이언트에게 노출되지 않고 서버측에서만 사용하도록 설정
 	@JsonIgnore
-	@Column(length = 20, nullable = false)
+	@Column(nullable = false)
 	private String password;
 
 	@Column(length = 15, nullable = false)
