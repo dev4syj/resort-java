@@ -2,7 +2,7 @@ package com.resort.dto;
 
 import java.io.Serializable;
 
-import com.resort.domain.User;
+import com.resort.domain.ResortUser;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -12,7 +12,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-public class UserDto {
+public class ResortUserDto {
 
 	// 회원정보 요청 Dto
 	@AllArgsConstructor
@@ -56,8 +56,8 @@ public class UserDto {
 		 */
 
 		// Dto -> Entity
-		public User toEntity() {
-			User user = User.builder()
+		public ResortUser toEntity() {
+			ResortUser user = ResortUser.builder()
 					.userId(userId)
 					.id(id)
 					.password(password)
@@ -84,7 +84,7 @@ public class UserDto {
         private final String email;
         
         // Entity -> Dto
-        public Response(User user) {
+        public Response(ResortUser user) {
             this.userId = user.getUserId();
             this.id = user.getId();
             this.password = user.getPassword();

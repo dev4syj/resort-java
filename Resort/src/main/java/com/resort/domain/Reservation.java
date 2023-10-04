@@ -47,6 +47,6 @@ public class Reservation {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User reservationUser; // 예약자
+	private ResortUser reservationUser; // 예약자
 
 }

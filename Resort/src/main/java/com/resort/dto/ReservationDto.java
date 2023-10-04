@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.resort.domain.Reservation;
-import com.resort.domain.User;
+import com.resort.domain.ResortUser;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -25,7 +25,7 @@ public class ReservationDto {
 		private int adult;
 		private int children;
 		private int roomId;
-		private User reservationUser;
+		private ResortUser reservationUser;
 		
 		@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
 		private Date checkInDate;
@@ -60,7 +60,7 @@ public class ReservationDto {
 		private final int adult;
 		private final int children;
 		private final int roomId;
-		private final User reservationUser;
+		private final ResortUser reservationUser;
 		private final Date checkInDate;
 		private final Date checkOutDate;
 		private final Date reservationDate;

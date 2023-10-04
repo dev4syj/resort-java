@@ -48,7 +48,7 @@ public class Post {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
-	private User postUser;
+	private ResortUser postUser;
 
 	@OneToMany(mappedBy = "rootId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@OrderBy("comment_date asc")

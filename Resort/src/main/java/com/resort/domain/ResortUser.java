@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class User {
+public class ResortUser {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

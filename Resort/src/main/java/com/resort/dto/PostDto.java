@@ -3,7 +3,7 @@ package com.resort.dto;
 import java.util.Date;
 
 import com.resort.domain.Post;
-import com.resort.domain.User;
+import com.resort.domain.ResortUser;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -26,7 +26,7 @@ public class PostDto {
 		private Date postModifiedDate;
 		private String content;
 		private int view;
-		private User postUser;
+		private ResortUser postUser;
 		
 		// Dto -> Entity
         public Post toEntity() {
@@ -54,7 +54,7 @@ public class PostDto {
 		private final Date postModifiedDate;
 		private final String content;
 		private final int view;
-		private final User postUser;
+		private final ResortUser postUser;
 		
 		// Entity -> Dto
         public Response(Post post) {

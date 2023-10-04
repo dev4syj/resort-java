@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
-import com.resort.domain.User;
-import com.resort.dto.UserDto;
-import com.resort.repository.UserRepository;
+import com.resort.domain.ResortUser;
+import com.resort.dto.ResortUserDto;
+import com.resort.repository.ResortUserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,13 +19,13 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class UserService {
 
-	private final UserRepository userRepository;
+	private final ResortUserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
 
-	public User create(Long userId, String id, String password, String name, String phone, String address,
+	public ResortUser create(Long userId, String id, String password, String name, String phone, String address,
 			String email) {
 
-		User user = new User();
+		ResortUser user = new ResortUser();
 		user.setUserId(userId);
 		user.setId(id);
 		user.setPassword(passwordEncoder.encode(password));
@@ -40,7 +40,7 @@ public class UserService {
 
 	// 회원가입
 	@Transactional
-	public void userJoin(UserDto.Request userDto) {
+	public void userJoin(ResortUserDto.Request userDto) {
 
 		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		userRepository.save(userDto.toEntity());

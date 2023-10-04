@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.resort.domain.Comment;
 import com.resort.domain.Post;
-import com.resort.domain.User;
+import com.resort.domain.ResortUser;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +26,7 @@ public class CommentDto {
 		private Date commentDate;
 		private Date commentModifiedDate;
 		private Post rootId;
-		private User commentUser;
+		private ResortUser commentUser;
 		
 		// Dto -> Entity
 		public Comment toEntity() {
@@ -52,7 +52,7 @@ public class CommentDto {
 		private Date commentDate;
 		private Date commentModifiedDate;
 		private Post rootId;
-		private User commentUser;
+		private ResortUser commentUser;
 		
 		// Entity -> Dto
 		public Response(Comment comment) {			

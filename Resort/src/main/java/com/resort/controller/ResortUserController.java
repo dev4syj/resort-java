@@ -8,7 +8,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.resort.dto.UserDto;
+import com.resort.dto.ResortUserDto;
 import com.resort.service.UserService;
 
 import jakarta.validation.Valid;
@@ -16,19 +16,19 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Controller
-public class UserController {
+public class ResortUserController {
 
 	private final UserService userService;
 
 	@GetMapping("/join")
 	public String join(Model model) {
-		model.addAttribute("userDto", new UserDto.Request());
+		model.addAttribute("userDto", new ResortUserDto.Request());
 		return "join";
 	}
 
 	// 회원가입
 	@PostMapping("/join")
-	public String join(@Valid UserDto.Request userDto, Errors errors, Model model) {
+	public String join(@Valid ResortUserDto.Request userDto, Errors errors, Model model) {
 
 		if (errors.hasErrors()) {
 			model.addAttribute("userDto", userDto);

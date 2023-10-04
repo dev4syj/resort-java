@@ -52,10 +52,9 @@
                                 </ul>
                             </nav>
                             <div class="top-info">
-                                <img src="img/placeholder.png" alt="">
-                                <span>1525 Boring Lane, Los Angeles, CA</span>
                                 <a href="./join">Join</a>
-                                <a href="#">Login</a>
+                                <a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
+								<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
                             </div>
                         </div>
                     </div>

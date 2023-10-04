@@ -41,5 +41,5 @@ public class Comment {
 
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private User commentUser; // 작성자
+	private ResortUser commentUser; // 작성자
 }
