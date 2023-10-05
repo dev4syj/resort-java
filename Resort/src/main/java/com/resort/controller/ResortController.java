@@ -11,14 +11,9 @@ public class ResortController {
 		return "index";
 	}
 
-	@GetMapping("/about-us")
+	@GetMapping("/about")
 	public String about() {
-		return "about-us";
-	}
-
-	@GetMapping("/main")
-	public String main() {
-		return "main";
+		return "about";
 	}
 
 	@GetMapping("/contact")
@@ -26,19 +21,20 @@ public class ResortController {
 		return "contact";
 	}
 
+	
 	@GetMapping("/rooms")
 	public String rooms() {
 		return "rooms";
 	}
 
-	@GetMapping("/services")
-	public String services() {
-		return "services";
+	@GetMapping("/service")
+	public String service() {
+		return "service";
 	}
 	
-	@GetMapping("/local-area")
-	public String local() {
-		return "local-area";
+	@GetMapping("/notice")
+	public String notice() {
+		return "notice";
 	}
 
 }

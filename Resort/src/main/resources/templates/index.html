@@ -1,436 +1,540 @@
 <!DOCTYPE html>
-<html lang="zxx">
-	
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Hotel Template">
-    <meta name="keywords" content="Hotel, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Serenitas Resort</title>
+<html lang="en">
 
-    <!-- Google Font -->
-    <link href="https://fonts.googleapis.com/css?family=Taviraj:300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap" rel="stylesheet">
-
-    <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/flaticon.css" type="text/css">
-    <link rel="stylesheet" href="css/linearicons.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-</head>
+<!-- Header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+	<!-- Navbar -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
 
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container-fluid">
-            <div class="inner-header">
-                <div class="logo">
-                    <a href="./"><img src="img/logo.png" alt=""></a>
-                </div>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-xl-12">
-                            <nav class="main-menu mobile-menu">
-                                <ul>
-                                    <li><a href="./about-us">About</a></li>
-                                    <li><a href="./rooms">Rooms</a></li>
-                                    <li><a href="./local-area">Local Area </a></li>                                  
-                                    <li><a href="./contact">Contact</a></li>
-                                </ul>
-                            </nav>
-                            <div class="top-info">
-                                <a href="./join">Join</a>
-                                <a sec:authorize="isAnonymous()" th:href="@{/login}">Login</a>
-								<a sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div id="mobile-menu-wrap"></div>
-            </div>
-        </div>
-    </header>
-    <!-- Header End -->
+	<!-- Carousel Start -->
+	<div class="container-fluid p-0 wow fadeIn" data-wow-delay="0.1s">
+		<div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<img class="w-100" src="img/carousel-1.jpg" alt="Image">
+					<div class="carousel-caption">
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-lg-8">
+									<h1 class="display-1 text-white mb-5 animated slideInDown">Make Your Home Like
+										Garden</h1>
+									<a href="" class="btn btn-primary py-sm-3 px-sm-4">Explore More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<img class="w-100" src="img/carousel-2.jpg" alt="Image">
+					<div class="carousel-caption">
+						<div class="container">
+							<div class="row justify-content-center">
+								<div class="col-lg-7">
+									<h1 class="display-1 text-white mb-5 animated slideInDown">Create Your Own Small
+										Garden At Home</h1>
+									<a href="" class="btn btn-primary py-sm-3 px-sm-4">Explore More</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#header-carousel" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#header-carousel" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+	</div>
+	<!-- Carousel End -->
 
-    <!-- Hero Slider Begin -->
-    <div class="hero-slider">
-        <div class="slider-item">
-            <div class="single-slider-item set-bg" data-setbg="img/slider-1.jpg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h1>We hope you’ll enjoy <br />your stay.</h1>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="slider-nav">
-                                <a href="#" class="single-slider-nav">
-                                    <img src="img/nav-1.jpg" alt="">
-                                    <div class="nav-text active">
-                                        <p>Pool<i class="lnr lnr-arrow-right"></i></p>
-                                    </div>
-                                </a>
-                                <a href="#" class="single-slider-nav">
-                                    <img src="img/nav-2.jpg" alt="">
-                                    <div class="nav-text">
-                                        <p>Sauna<i class="lnr lnr-arrow-right"></i></p>
-                                    </div>
-                                </a>
-                                <a href="#" class="single-slider-nav last">
-                                    <img src="img/nav-3.jpg" alt="">
-                                    <div class="nav-text">
-                                        <p>Restaurant<i class="lnr lnr-arrow-right"></i></p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Hero Slider End -->
 
-    <!-- Room Availability Section Begin -->
-    <section class="room-availability spad">
-        <div class="container">
-            <div class="room-check">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="room-item">
-                            <div class="room-pic-slider room-pic-item owl-carousel">
-                                <div class="room-pic">
-                                    <img src="img/room-slider/room-1.jpg" alt="">
-                                </div>
-                                <div class="room-pic">
-                                    <img src="img/room-slider/room-2.jpg" alt="">
-                                </div>
-                                <div class="room-pic">
-                                    <img src="img/room-slider/room-3.jpg" alt="">
-                                </div>
-                            </div>
-                            <div class="room-text">
-                                <div class="room-title">
-                                    <h2>Junior Suite</h2>
-                                    <div class="room-price">
-                                        <span>From</span>
-                                        <h2>$252</h2>
-                                    </div>
-                                </div>
-                                <div class="room-features">
-                                    <div class="room-info">
-                                        <i class="flaticon-019-television"></i>
-                                        <span>Smart TV</span>
-                                    </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-029-wifi"></i>
-                                        <span>High Wi-fii</span>
-                                    </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-003-air-conditioner"></i>
-                                        <span>AC</span>
-                                    </div>
-                                    <div class="room-info">
-                                        <i class="flaticon-036-parking"></i>
-                                        <span>Parking</span>
-                                    </div>
-                                    <div class="room-info last">
-                                        <i class="flaticon-007-swimming-pool"></i>
-                                        <span>Pool</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="check-form">
-                            <h2>Check Availability</h2>
-                            <form action="#">
-                                <div class="datepicker">
-                                    <div class="date-select">
-                                        <p>From</p>
-                                        <input type="text" class="datepicker-1" value="dd / mm / yyyy">
-                                        <img src="img/calendar.png" alt="">
-                                    </div>
-                                    <div class="date-select to">
-                                        <p>To</p>
-                                        <input type="text" class="datepicker-2" value="dd / mm / yyyy">
-                                        <img src="img/calendar.png" alt="">
-                                    </div>
-                                </div>
-                                <div class="room-quantity">
-                                    <div class="single-quantity">
-                                        <p>Adults</p>
-                                        <div class="pro-qty"><input type="text" value="0"></div>
-                                    </div>
-                                    <div class="single-quantity">
-                                        <p>Children</p>
-                                        <div class="pro-qty"><input type="text" value="0"></div>
-                                    </div>
-                                    <div class="single-quantity last">
-                                        <p>Rooms</p>
-                                        <div class="pro-qty"><input type="text" value="0"></div>
-                                    </div>
-                                </div>
-                                <div class="room-selector">
-                                    <p>Room</p>
-                                    <select class="suit-select">
-                                        <option>Eg. Master suite</option>
-                                        <option value="">Double Room</option>
-                                        <option value="">Single Room</option>
-                                        <option value="">Special Room</option>
-                                    </select>
-                                </div>
-                                <button type="button">CHECK Availability <i class="lnr lnr-arrow-right"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="about-room">
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1">
-                        <h2>“Customers may forget what you said  but they will never forget how you made themfeel”.</h2>
-                    </div>
-                </div>
-                <div class="about-para">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus libero mauris,
-                                bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna fermentum
-                                ornare. Morbi vel ultrices leo. Sed eu turpis eu arcu vehicula fringilla ut vitae
-                                orci. Suspendisse maximus malesuada</p>
-                        </div>
-                        <div class="col-lg-6">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at vulputate est.
-                                Donec tempor felis at nibh eleifend malesuada. Nullam suscipit lobortis aliquam.
-                                Phasellus lobortis ante lorem, vitae scelerisque lacus tempus sed. Phasellus rutrum
-                                magna </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Room Availability Section End -->
+	<!-- Top Feature Start -->
+	<div class="container-fluid top-feature py-5 pt-lg-0">
+		<div class="container py-5 pt-lg-0">
+			<div class="row gx-0">
+				<div class="col-lg-4 wow fadeIn" data-wow-delay="0.1s">
+					<div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
+						<div class="d-flex">
+							<div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+								<i class="fa fa-times text-primary"></i>
+							</div>
+							<div class="ps-3">
+								<h4>No Hidden Cost</h4>
+								<span>Clita erat ipsum lorem sit sed stet duo justo</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 wow fadeIn" data-wow-delay="0.3s">
+					<div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
+						<div class="d-flex">
+							<div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+								<i class="fa fa-users text-primary"></i>
+							</div>
+							<div class="ps-3">
+								<h4>Dedicated Team</h4>
+								<span>Clita erat ipsum lorem sit sed stet duo justo</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 wow fadeIn" data-wow-delay="0.5s">
+					<div class="bg-white shadow d-flex align-items-center h-100 px-5" style="min-height: 160px;">
+						<div class="d-flex">
+							<div class="flex-shrink-0 btn-lg-square rounded-circle bg-light">
+								<i class="fa fa-phone text-primary"></i>
+							</div>
+							<div class="ps-3">
+								<h4>24/7 Available</h4>
+								<span>Clita erat ipsum lorem sit sed stet duo justo</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Top Feature End -->
 
-    <div class="testimonial-section spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-title">
-                        <h1>Guestbook</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="testimonial-item">
-                        <div class="tab-content">
-                            <div class="tab-pane fade-in active" id="testimonial-1" role="tabpanel">
-                                <div class="single-testimonial-item">
-                                    <span class="test-date">02/02/2019</span>
-                                    <div class="test-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <h4>Loved It</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiselit. Vivamus libero mauris,
-                                        bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna
-                                        fermentum ornare.</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="testimonial-2" role="tabpanel">
-                                <div class="single-testimonial-item">
-                                    <span class="test-date">02/02/2019</span>
-                                    <div class="test-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <h4>Loved It2</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiselit. Vivamus libero mauris,
-                                        bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna
-                                        fermentum ornare.</p>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="testimonial-3" role="tabpanel">
-                                <div class="single-testimonial-item">
-                                    <span class="test-date">02/02/2019</span>
-                                    <div class="test-rating">
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                        <i class="fa fa-star"></i>
-                                    </div>
-                                    <h4>Loved It3</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiselit. Vivamus libero mauris,
-                                        bibendum eget sapien ac, ultrices rhoncus ipsum. Donec nec sapien in urna
-                                        fermentum ornare.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="testimonial-author-item">
-                        <ul class="nav" role="tablist">
-                            <li>
-                                <a data-toggle="tab" href="#testimonial-1" role="tab" class="show active">
-                                    <div class="author-pic">
-                                        <img src="img/testimonial/author-1.jpg" alt="">
-                                    </div>
-                                    <div class="author-text">
-                                        <h5>John Doe <span>Berlin</span></h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#testimonial-2" role="tab">
-                                    <div class="author-pic">
-                                        <img src="img/testimonial/author-2.jpg" alt="">
-                                    </div>
-                                    <div class="author-text">
-                                        <h5>John Doe <span>Berlin</span></h5>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a data-toggle="tab" href="#testimonial-3" role="tab">
-                                    <div class="author-pic">
-                                        <img src="img/testimonial/author-3.jpg" alt="">
-                                    </div>
-                                    <div class="author-text">
-                                        <h5>John Doe <span>Berlin</span></h5>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- Follow Instagram Section Begin -->
-    <section class="follow-instagram">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Follow us on Instagram @yourhotel</h2>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Follow Instagram Section End -->
+	<!-- About Start -->
+	<div class="container-xxl py-5">
+		<div class="container">
+			<div class="row g-5 align-items-end">
+				<div class="col-lg-3 col-md-5 wow fadeInUp" data-wow-delay="0.1s">
+					<img class="img-fluid rounded" data-wow-delay="0.1s" src="img/about.jpg">
+				</div>
+				<div class="col-lg-6 col-md-7 wow fadeInUp" data-wow-delay="0.3s">
+					<h1 class="display-1 text-primary mb-0">25</h1>
+					<p class="text-primary mb-4">Year of Experience</p>
+					<h1 class="display-5 mb-4">We Make Your Home Like A Garden</h1>
+					<p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
+						eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+					</p>
+					<a class="btn btn-primary py-3 px-4" href="">Explore More</a>
+				</div>
+				<div class="col-lg-3 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+					<div class="row g-5">
+						<div class="col-12 col-sm-6 col-lg-12">
+							<div class="border-start ps-4">
+								<i class="fa fa-award fa-3x text-primary mb-3"></i>
+								<h4 class="mb-3">Award Winning</h4>
+								<span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</span>
+							</div>
+						</div>
+						<div class="col-12 col-sm-6 col-lg-12">
+							<div class="border-start ps-4">
+								<i class="fa fa-users fa-3x text-primary mb-3"></i>
+								<h4 class="mb-3">Dedicated Team</h4>
+								<span>Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- About End -->
 
-    <!-- Footer Room Pic Section Begin -->
-    <div class="footer-room-pic">
-        <div class="container-fluid">
-            <div class="row">
-                <img src="img/room-footer-pic/room-1.jpg" alt="">
-                <img src="img/room-footer-pic/room-2.jpg" alt="">
-                <img src="img/room-footer-pic/room-3.jpg" alt="">
-                <img src="img/room-footer-pic/room-4.jpg" alt="">
-            </div>
-        </div>
-    </div>
-    <!-- Footer Room Pic Section End -->
 
-    <!-- Footer Section Begin -->
-    <footer class="footer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="footer-logo">
-                        <a href="#"><img src="img/logo.png" alt=""></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row pb-50">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Location</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-map-marker"></i>
-                            <p>1525 Boring Lane, <br />Los Angeles, CA</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Reception</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+1 (603)535-4592</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Shuttle Service</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+1 (603)535-4592</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single-footer-widget">
-                        <h5>Restaurant</h5>
-                        <div class="widget-text">
-                            <i class="lnr lnr-phone-handset"></i>
-                            <p>+1 (603)535-4592</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="copyright-area">
-            <div class="container">
-                <div class="copyright-text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
-                <div class="privacy-links">
-                    <a href="#">Privacy Policy</a>
-                    <a href="#">Photo Requests</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Footer Section End -->
+	<!-- Facts Start -->
+	<div class="container-fluid facts my-5 py-5" data-parallax="scroll" data-image-src="img/carousel-1.jpg">
+		<div class="container py-5">
+			<div class="row g-5">
+				<div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+					<h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
+					<span class="fs-5 fw-semi-bold text-light">Happy Clients</span>
+				</div>
+				<div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
+					<h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
+					<span class="fs-5 fw-semi-bold text-light">Garden Complated</span>
+				</div>
+				<div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
+					<h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
+					<span class="fs-5 fw-semi-bold text-light">Dedicated Staff</span>
+				</div>
+				<div class="col-sm-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
+					<h1 class="display-4 text-white" data-toggle="counter-up">1234</h1>
+					<span class="fs-5 fw-semi-bold text-light">Awards Achieved</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Facts End -->
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery-ui.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+
+	<!-- Features Start -->
+	<div class="container-xxl py-5">
+		<div class="container">
+			<div class="row g-5 align-items-center">
+				<div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+					<p class="fs-5 fw-bold text-primary">Why Choosing Us!</p>
+					<h1 class="display-5 mb-4">Few Reasons Why People Choosing Us!</h1>
+					<p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
+						eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet
+					</p>
+					<a class="btn btn-primary py-3 px-4" href="">Explore More</a>
+				</div>
+				<div class="col-lg-6">
+					<div class="row g-4 align-items-center">
+						<div class="col-md-6">
+							<div class="row g-4">
+								<div class="col-12 wow fadeIn" data-wow-delay="0.3s">
+									<div class="text-center rounded py-5 px-4"
+										style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
+										<div class="btn-square bg-light rounded-circle mx-auto mb-4"
+											style="width: 90px; height: 90px;">
+											<i class="fa fa-check fa-3x text-primary"></i>
+										</div>
+										<h4 class="mb-0">100% Satisfaction</h4>
+									</div>
+								</div>
+								<div class="col-12 wow fadeIn" data-wow-delay="0.5s">
+									<div class="text-center rounded py-5 px-4"
+										style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
+										<div class="btn-square bg-light rounded-circle mx-auto mb-4"
+											style="width: 90px; height: 90px;">
+											<i class="fa fa-users fa-3x text-primary"></i>
+										</div>
+										<h4 class="mb-0">Dedicated Team</h4>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-6 wow fadeIn" data-wow-delay="0.7s">
+							<div class="text-center rounded py-5 px-4" style="box-shadow: 0 0 45px rgba(0,0,0,.08);">
+								<div class="btn-square bg-light rounded-circle mx-auto mb-4"
+									style="width: 90px; height: 90px;">
+									<i class="fa fa-tools fa-3x text-primary"></i>
+								</div>
+								<h4 class="mb-0">Modern Equipment</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Features End -->
+
+
+	<!-- Service Start -->
+	<div class="container-xxl py-5">
+		<div class="container">
+			<div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+				<p class="fs-5 fw-bold text-primary">Our Services</p>
+				<h1 class="display-5 mb-5">Services That We Offer For You</h1>
+			</div>
+			<div class="row g-4">
+				<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+					<div class="service-item rounded d-flex h-100">
+						<div class="service-img rounded">
+							<img class="img-fluid" src="img/service-1.jpg" alt="">
+						</div>
+						<div class="service-text rounded p-5">
+							<div class="btn-square rounded-circle mx-auto mb-3">
+								<img class="img-fluid" src="img/icon/icon-3.png" alt="Icon">
+							</div>
+							<h4 class="mb-3">Landscaping</h4>
+							<p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
+								stet diam sed stet.</p>
+							<a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+					<div class="service-item rounded d-flex h-100">
+						<div class="service-img rounded">
+							<img class="img-fluid" src="img/service-2.jpg" alt="">
+						</div>
+						<div class="service-text rounded p-5">
+							<div class="btn-square rounded-circle mx-auto mb-3">
+								<img class="img-fluid" src="img/icon/icon-6.png" alt="Icon">
+							</div>
+							<h4 class="mb-3">Pruning plants</h4>
+							<p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
+								stet diam sed stet.</p>
+							<a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+					<div class="service-item rounded d-flex h-100">
+						<div class="service-img rounded">
+							<img class="img-fluid" src="img/service-3.jpg" alt="">
+						</div>
+						<div class="service-text rounded p-5">
+							<div class="btn-square rounded-circle mx-auto mb-3">
+								<img class="img-fluid" src="img/icon/icon-5.png" alt="Icon">
+							</div>
+							<h4 class="mb-3">Irrigation & Drainage</h4>
+							<p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
+								stet diam sed stet.</p>
+							<a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+					<div class="service-item rounded d-flex h-100">
+						<div class="service-img rounded">
+							<img class="img-fluid" src="img/service-4.jpg" alt="">
+						</div>
+						<div class="service-text rounded p-5">
+							<div class="btn-square rounded-circle mx-auto mb-3">
+								<img class="img-fluid" src="img/icon/icon-4.png" alt="Icon">
+							</div>
+							<h4 class="mb-3">Garden Maintenance </h4>
+							<p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
+								stet diam sed stet.</p>
+							<a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+					<div class="service-item rounded d-flex h-100">
+						<div class="service-img rounded">
+							<img class="img-fluid" src="img/service-5.jpg" alt="">
+						</div>
+						<div class="service-text rounded p-5">
+							<div class="btn-square rounded-circle mx-auto mb-3">
+								<img class="img-fluid" src="img/icon/icon-8.png" alt="Icon">
+							</div>
+							<h4 class="mb-3">Green Technology</h4>
+							<p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
+								stet diam sed stet.</p>
+							<a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+					<div class="service-item rounded d-flex h-100">
+						<div class="service-img rounded">
+							<img class="img-fluid" src="img/service-6.jpg" alt="">
+						</div>
+						<div class="service-text rounded p-5">
+							<div class="btn-square rounded-circle mx-auto mb-3">
+								<img class="img-fluid" src="img/icon/icon-2.png" alt="Icon">
+							</div>
+							<h4 class="mb-3">Urban Gardening</h4>
+							<p class="mb-4">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam
+								stet diam sed stet.</p>
+							<a class="btn btn-sm" href=""><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Service End -->
+
+	<!-- Projects Start -->
+	<div class="container-xxl py-5">
+		<div class="container">
+			<div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+				<p class="fs-5 fw-bold text-primary">Our Projects</p>
+				<h1 class="display-5 mb-5">Some Of Our Wonderful Projects</h1>
+			</div>
+			<div class="row wow fadeInUp" data-wow-delay="0.3s">
+				<div class="col-12 text-center">
+					<ul class="list-inline rounded mb-5" id="portfolio-flters">
+						<li class="mx-2 active" data-filter="*">All</li>
+						<li class="mx-2" data-filter=".first">Complete Projects</li>
+						<li class="mx-2" data-filter=".second">Ongoing Projects</li>
+					</ul>
+				</div>
+			</div>
+			<div class="row g-4 portfolio-container">
+				<div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.1s">
+					<div class="portfolio-inner rounded">
+						<img class="img-fluid" src="img/service-1.jpg" alt="">
+						<div class="portfolio-text">
+							<h4 class="text-white mb-4">Landscaping</h4>
+							<div class="d-flex">
+								<a class="btn btn-lg-square rounded-circle mx-2" href="img/service-1.jpg"
+									data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+								<a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.3s">
+					<div class="portfolio-inner rounded">
+						<img class="img-fluid" src="img/service-2.jpg" alt="">
+						<div class="portfolio-text">
+							<h4 class="text-white mb-4">Pruning plants</h4>
+							<div class="d-flex">
+								<a class="btn btn-lg-square rounded-circle mx-2" href="img/service-2.jpg"
+									data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+								<a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.5s">
+					<div class="portfolio-inner rounded">
+						<img class="img-fluid" src="img/service-3.jpg" alt="">
+						<div class="portfolio-text">
+							<h4 class="text-white mb-4">Irrigation & Drainage</h4>
+							<div class="d-flex">
+								<a class="btn btn-lg-square rounded-circle mx-2" href="img/service-3.jpg"
+									data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+								<a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.1s">
+					<div class="portfolio-inner rounded">
+						<img class="img-fluid" src="img/service-4.jpg" alt="">
+						<div class="portfolio-text">
+							<h4 class="text-white mb-4">Garden Maintenance</h4>
+							<div class="d-flex">
+								<a class="btn btn-lg-square rounded-circle mx-2" href="img/service-4.jpg"
+									data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+								<a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 portfolio-item first wow fadeInUp" data-wow-delay="0.3s">
+					<div class="portfolio-inner rounded">
+						<img class="img-fluid" src="img/service-5.jpg" alt="">
+						<div class="portfolio-text">
+							<h4 class="text-white mb-4">Green Technology</h4>
+							<div class="d-flex">
+								<a class="btn btn-lg-square rounded-circle mx-2" href="img/service-5.jpg"
+									data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+								<a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 portfolio-item second wow fadeInUp" data-wow-delay="0.5s">
+					<div class="portfolio-inner rounded">
+						<img class="img-fluid" src="img/service-6.jpg" alt="">
+						<div class="portfolio-text">
+							<h4 class="text-white mb-4">Urban Gardening</h4>
+							<div class="d-flex">
+								<a class="btn btn-lg-square rounded-circle mx-2" href="img/service-6.jpg"
+									data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+								<a class="btn btn-lg-square rounded-circle mx-2" href=""><i class="fa fa-link"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Projects End -->
+
+
+	<!-- Team Start -->
+	<div class="container-xxl py-5">
+		<div class="container">
+			<div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+				<p class="fs-5 fw-bold text-primary">Our Team</p>
+				<h1 class="display-5 mb-5">Dedicated & Experienced Team Members</h1>
+			</div>
+			<div class="row g-4">
+				<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+					<div class="team-item rounded">
+						<img class="img-fluid" src="img/team-1.jpg" alt="">
+						<div class="team-text">
+							<h4 class="mb-0">Doris Jordan</h4>
+							<p class="text-primary">Landscape Designer</p>
+							<div class="team-social d-flex">
+								<a class="btn btn-square rounded-circle me-2" href=""><i
+										class="fab fa-facebook-f"></i></a>
+								<a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
+								<a class="btn btn-square rounded-circle me-2" href=""><i
+										class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+					<div class="team-item rounded">
+						<img class="img-fluid" src="img/team-2.jpg" alt="">
+						<div class="team-text">
+							<h4 class="mb-0">Johnny Ramirez</h4>
+							<p class="text-primary">Garden Designer</p>
+							<div class="team-social d-flex">
+								<a class="btn btn-square rounded-circle me-2" href=""><i
+										class="fab fa-facebook-f"></i></a>
+								<a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
+								<a class="btn btn-square rounded-circle me-2" href=""><i
+										class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+					<div class="team-item rounded">
+						<img class="img-fluid" src="img/team-3.jpg" alt="">
+						<div class="team-text">
+							<h4 class="mb-0">Diana Wagner</h4>
+							<p class="text-primary">Senior Gardener</p>
+							<div class="team-social d-flex">
+								<a class="btn btn-square rounded-circle me-2" href=""><i
+										class="fab fa-facebook-f"></i></a>
+								<a class="btn btn-square rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
+								<a class="btn btn-square rounded-circle me-2" href=""><i
+										class="fab fa-instagram"></i></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Team End -->
+
+
+	<!-- Testimonial Start -->
+	<div class="container-xxl py-5">
+		<div class="container">
+			<div class="row g-5">
+				<div class="col-lg-5 wow fadeInUp" data-wow-delay="0.1s">
+					<p class="fs-5 fw-bold text-primary">Testimonial</p>
+					<h1 class="display-5 mb-5">What Our Clients Say About Us!</h1>
+					<p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et
+						eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo justo.</p>
+					<a class="btn btn-primary py-3 px-4" href="">See More</a>
+				</div>
+				<div class="col-lg-7 wow fadeInUp" data-wow-delay="0.5s">
+					<div class="owl-carousel testimonial-carousel">
+						<div class="testimonial-item">
+							<img class="img-fluid rounded mb-3" src="img/testimonial-1.jpg" alt="">
+							<p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
+								lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.
+							</p>
+							<h4>Client Name</h4>
+							<span>Profession</span>
+						</div>
+						<div class="testimonial-item">
+							<img class="img-fluid rounded mb-3" src="img/testimonial-2.jpg" alt="">
+							<p class="fs-5">Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore
+								lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat.
+							</p>
+							<h4>Client Name</h4>
+							<span>Profession</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Testimonial End -->
+
+	<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
 </body>
+
 
 </html>

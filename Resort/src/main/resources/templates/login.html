@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta charset="UTF-8">
-	<title>Serenitas Resort</title>
-</head>
+<!-- Header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
 
 <body>
-	<h3>Login page</h3>
-	<form th:action="@{/login}" method="post">
-		<div th:if="${param.error}">
-			<div class="alert alert-danger">
-				사용자ID 또는 비밀번호를 확인해 주세요.
+	<!-- Navbar -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+	<!-- Page Header Start -->
+	<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+		<div class="container text-center py-5">
+			<h1 class="display-3 text-white mb-4 animated slideInDown">Login</h1>
+		</div>
+	</div>
+	<!-- Page Header End -->
+
+	<!-- 로그인 폼 -->
+	<div layout:fragment="content" class="container my-3">
+		<form th:action="@{/login}" method="post">
+			<div th:if="${param.error}">
+				<div class="alert alert-danger">
+					사용자ID 또는 비밀번호를 확인해 주세요.
+				</div>
 			</div>
-		</div>
-		<div class="login">
-			<label for="username" class="form-label">사용자ID</label>
-			<input type="text" name="username" id="id" class="form-control">
-		</div>
-		<div class="login">
-			<label for="password" class="form-label">비밀번호</label>
-			<input type="password" name="password" id="password" class="form-control">
-		</div>
-		<button type="submit" class="btn btn-primary">로그인</button>
-	</form>
+			<div class="mb-3">
+				<label for="username" class="form-label">사용자ID</label>
+				<input type="text" name="username" id="id" class="form-control">
+			</div>
+			<div class="mb-3">
+				<label for="password" class="form-label">비밀번호</label>
+				<input type="password" name="password" id="password" class="form-control">
+			</div>
+			<button type="submit" class="btn btn-primary">로그인</button>
+		</form>
+	</div>
 </body>
+<!-- Footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 
 </html>
