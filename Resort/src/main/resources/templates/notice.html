@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<body>
+	<!-- Navbar -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+	<!-- Page Header -->
+	<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+		<div class="container text-center py-5">
+			<h1 class="display-3 text-white mb-4 animated slideInDown">Notice</h1>
+		</div>
+	</div>
+
+</body>
+<!-- Footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</html>

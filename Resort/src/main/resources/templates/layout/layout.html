@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lagn="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<meta charset="UTF-8" />
+	<link rel="stylesheet" href="../css/bootstrap.css" />
+	<link rel="stylesheet" href="../css/square.css" />
+	<script src="../js/bootstrap.js"></script>
+</head>
+
+<body>
+	<th:block th:fragment="headerFragment">
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+	<th:block th:fragment="content">
+	<th:block th:fragment="footerFragment">
+</body>
+
+</html>
