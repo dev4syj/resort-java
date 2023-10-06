@@ -1,6 +1,6 @@
 package com.resort.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,16 +9,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Entity
 @Getter
+@Setter
 @Builder
 public class Comment {
 
@@ -30,10 +31,10 @@ public class Comment {
 	private String comment;
 
 	@Column(nullable = false)
-	private Date commentDate;
-	
+	private LocalDateTime commentDate;
+
 	@Column
-	private Date commentModifiedDate;
+	private LocalDateTime commentModifiedDate;
 
 	@ManyToOne
 	@JoinColumn(name = "postId")
@@ -42,4 +43,5 @@ public class Comment {
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private ResortUser commentUser; // 작성자
+
 }

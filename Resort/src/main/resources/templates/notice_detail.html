@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<body>
+	<!-- Navbar -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+	<!-- Page Header -->
+	<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+		<div class="container text-center py-5">
+			<h1 class="display-3 text-white mb-4 animated slideInDown">Notice Detail</h1>
+		</div>
+	</div>
+	<div id="wrapper">
+		<div class="container">
+			<h1 th:text="${postDetail.title}"></h1>
+			<div th:text="${postDetail.content}"></div>
+			<h5 th:text="|${#lists.size(postDetail.comments)}개의 답변이 있습니다.|"></h5>
+			<div>
+				<ul>
+					<li th:each="comment : ${postDetail.comments}" th:text="${comment.content}"></li>
+				</ul>
+			</div>
+			<form th:action="@{|/commnet/create/${postDetail.postId}|}" method="post">
+				<textarea name="content" id="content" rows="15"></textarea>
+				<input type="submit" value="댓글등록">
+			</form>
+		</div>
+	</div>
+</body>
+
+<!-- Footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</html>

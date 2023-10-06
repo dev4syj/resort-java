@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<body>
+	<!-- Navbar -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+	<!-- Page Header -->
+	<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+		<div class="container text-center py-5">
+			<h1 class="display-3 text-white mb-4 animated slideInDown">Notice create</h1>
+		</div>
+	</div>
+
+	<div layout:fragment="content" class="container">
+		<h5 class="my-3 border-bottom pb-2">공지 등록</h5>
+		<form th:action="@{/notice/create}" th:object="${noticeForm}" method="post">
+			<div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+				<div th:each="err : ${#fields.allErrors()}" th:text="${err}" />
+			</div>
+			<div class="mb-3">
+				<label for="title" class="form-label">제목</label>
+				<input type="text" name="title" id="title" class="form-control">
+			</div>
+			<div class="mb-3">
+				<label for="content" class="form-label">내용</label>
+				<textarea name="content" id="content" class="form-control" rows="10"></textarea>
+			</div>
+			<input type="submit" value="저장하기" class="btn btn-primary my-2">
+		</form>
+	</div>
+</body>
+
+<!-- Footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</html>

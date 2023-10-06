@@ -26,7 +26,7 @@ public class UserSecurityService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-		Optional<ResortUser> _user = this.userRepository.findByid(id);
+		Optional<ResortUser> _user = this.userRepository.findById(id);
 		if (_user.isEmpty()) {
 			throw new UsernameNotFoundException("사용자를 찾을 수 없습니다.");
 		}

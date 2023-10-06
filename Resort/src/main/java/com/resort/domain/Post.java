@@ -1,5 +1,6 @@
 package com.resort.domain;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -14,17 +15,18 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OrderBy;
-import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Entity
 @Getter
 @Builder
+@Setter
 public class Post {
 
 	@Id
@@ -35,10 +37,10 @@ public class Post {
 	private String title;
 
 	@Column(nullable = false)
-	private Date postDate;
+	private LocalDateTime postDate;
 
 	@Column
-	private Date postModifiedDate;
+	private LocalDateTime postModifiedDate;
 
 	@Column(columnDefinition = "TEXT", nullable = false)
 	private String content;
@@ -53,5 +55,11 @@ public class Post {
 	@OneToMany(mappedBy = "rootId", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
 	@OrderBy("comment_date asc")
 	private List<Comment> comments; // 게시글 삭제되면 댓글도 삭제되도록 설정
+	
+	/* 게시글 수정 */
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
 }

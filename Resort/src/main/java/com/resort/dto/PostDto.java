@@ -1,15 +1,18 @@
 package com.resort.dto;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import com.resort.domain.Post;
 import com.resort.domain.ResortUser;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 public class PostDto {
 
@@ -18,16 +21,22 @@ public class PostDto {
 	@NoArgsConstructor(access = AccessLevel.PROTECTED)
 	@Builder
 	@Getter
+	@Setter
 	public static class Request {
 		
 		private Long postId;
-		private String title;
-		private Date postDate;
-		private Date postModifiedDate;
-		private String content;
+		private LocalDateTime postDate;
+		private LocalDateTime postModifiedDate;
 		private int view;
 		private ResortUser postUser;
 		
+		@NotEmpty(message="제목은 필수항목입니다.")
+	    @Size(max=200)
+		private String title;
+				
+		@NotEmpty(message="내용은 필수항목입니다.")
+		private String content;
+				
 		// Dto -> Entity
         public Post toEntity() {
             Post post = Post.builder()
@@ -42,6 +51,7 @@ public class PostDto {
 
             return post;
         }
+
 	}
 	
 	// 게시글 정보 반환
@@ -50,8 +60,8 @@ public class PostDto {
 		
 		private final Long postId;
 		private final String title;
-		private final Date postDate;
-		private final Date postModifiedDate;
+		private final LocalDateTime postDate;
+		private final LocalDateTime postModifiedDate;
 		private final String content;
 		private final int view;
 		private final ResortUser postUser;

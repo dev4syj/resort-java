@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="zxx">
 
 <!-- Header -->
 <th:block th:replace="fragments/header :: headerFragment"></th:block>
@@ -15,7 +15,35 @@
 		</div>
 	</div>
 
+	<div id="wrapper">
+		<div class="container">
+			<table>
+				<thead class="thead-strong">
+					<tr>
+						<th width="10%">번호</th>
+						<th>제목</th>
+						<th width="20%">작성자</th>
+						<th width="20%">작성일</th>
+						<th width="10%">조회수</th>
+					</tr>
+				</thead>
+				<tbody id="tbody">
+					<tr th:each="notice : ${list}">
+						<td th:text="${notice.postId}"></td>
+						<td>
+							<a th:href="@{|/notice/detail/${notice.postId}|}" th:text="${notice.title}"></a>
+						</td>
+						<td th:text="${notice.postUser}"></td>
+						<td th:text="${notice.postDate}"></td>
+						<td th:text="${notice.view}"></td>
+					</tr>
+				</tbody>
+			</table>
+			<a th:href="@{/notice/create}" class="btn btn-primary">공지 등록하기</a>
+		</div>
+	</div>
 </body>
+
 <!-- Footer -->
 <th:block th:replace="fragments/footer :: footerFragment"></th:block>
 

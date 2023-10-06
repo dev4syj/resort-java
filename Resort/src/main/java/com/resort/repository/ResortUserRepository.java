@@ -8,5 +8,6 @@ import com.resort.domain.ResortUser;
 
 public interface ResortUserRepository extends JpaRepository<ResortUser, Long> {
 
-	Optional<ResortUser> findByid(String id);
+	Optional<ResortUser> findById(String id);
+	 
 }

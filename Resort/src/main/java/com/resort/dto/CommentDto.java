@@ -1,5 +1,6 @@
 package com.resort.dto;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.resort.domain.Comment;
@@ -23,8 +24,8 @@ public class CommentDto {
 
 		private Long commentId;
 		private String comment;
-		private Date commentDate;
-		private Date commentModifiedDate;
+		private LocalDateTime commentDate;
+		private LocalDateTime commentModifiedDate;
 		private Post rootId;
 		private ResortUser commentUser;
 		
@@ -49,8 +50,8 @@ public class CommentDto {
     	
     	private Long commentId;
 		private String comment;
-		private Date commentDate;
-		private Date commentModifiedDate;
+		private LocalDateTime commentDate;
+		private LocalDateTime commentModifiedDate;
 		private Post rootId;
 		private ResortUser commentUser;
 		
