@@ -1,7 +1,9 @@
 package com.resort.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+import com.resort.domain.Comment;
 import com.resort.domain.Post;
 import com.resort.domain.ResortUser;
 
@@ -29,6 +31,7 @@ public class PostDto {
 		private LocalDateTime postModifiedDate;
 		private int view;
 		private ResortUser postUser;
+		private List<Comment> comments;
 		
 		@NotEmpty(message="제목은 필수항목입니다.")
 	    @Size(max=200)
@@ -36,6 +39,7 @@ public class PostDto {
 				
 		@NotEmpty(message="내용은 필수항목입니다.")
 		private String content;
+				
 				
 		// Dto -> Entity
         public Post toEntity() {
@@ -47,6 +51,7 @@ public class PostDto {
                     .content(content)
                     .view(0)
                     .postUser(postUser)
+                    .comments(comments)
                     .build();
 
             return post;
@@ -65,6 +70,7 @@ public class PostDto {
 		private final String content;
 		private final int view;
 		private final ResortUser postUser;
+		private List<Comment> comments;
 		
 		// Entity -> Dto
         public Response(Post post) {
@@ -75,6 +81,7 @@ public class PostDto {
             this.content = post.getContent();
             this.view = post.getView();
             this.postUser = post.getPostUser();
+            this.comments = post.getComments();
         }
 	}
 

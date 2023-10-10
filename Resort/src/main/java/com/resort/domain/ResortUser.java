@@ -43,7 +43,7 @@ public class ResortUser {
 	@Column(length = 15, nullable = false)
 	private String address;
 
-	@Column(length = 15, nullable = false, unique = true)
+	@Column(length = 30, nullable = false, unique = true)
 	private String email;
 
 }

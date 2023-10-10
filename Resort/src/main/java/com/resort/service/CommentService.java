@@ -1,9 +1,11 @@
 package com.resort.service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.resort.DataNotFoundException;
 import com.resort.domain.Comment;
 import com.resort.domain.Post;
 import com.resort.domain.ResortUser;
@@ -40,5 +42,24 @@ public class CommentService {
 		comment.setCommentUser(user);
 		commentRepository.save(comment);
 	}
+	
+	public Comment getcomment(long commentId) {
+        Optional<Comment> comment = this.commentRepository.findById(commentId);
+        if (comment.isPresent()) {
+            return comment.get();
+        } else {
+            throw new DataNotFoundException("comment not found");
+        }
+    }
+	
+	public void modify(Comment comments, String comment) {
+		comments.setComment(comment);
+		comments.setCommentModifiedDate(LocalDateTime.now());
+        this.commentRepository.save(comments);
+    }
+	
+	public void delete(Comment comments) {
+        this.commentRepository.delete(comments);
+    }
 
 }

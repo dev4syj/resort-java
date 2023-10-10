@@ -6,6 +6,7 @@ import com.resort.domain.ResortUser;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -45,6 +46,7 @@ public class ResortUserDto {
 
 		@Pattern(regexp = "^(?:\\w+\\.?)*\\w+@(?:\\w+\\.)+\\w+$", message = "이메일 형식이 올바르지 않습니다.")
 		@NotBlank(message = "이메일은 필수 입력 값입니다.")
+		@Size(max=30)
 		private String email;
 		/*
 		 * 로컬파트@도메인파트로 구성 아래와 같은 형식은 통과하지 않는다

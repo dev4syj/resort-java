@@ -27,13 +27,12 @@ public class ResortUserController {
 
 	// 회원가입
 	@PostMapping("/join")
-	public String join(@Valid @ModelAttribute("userDto") ResortUserDto.Request userDto, BindingResult bindingResult, Model model) {
+	public String join(@Valid @ModelAttribute("userDto") ResortUserDto.Request userDto, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
-			//model.addAttribute("userDto", userDto);
 			return "join";
 		}
-		this.userService.userJoin(userDto);
+		userService.userJoin(userDto);
 
 		return "index";
 	}

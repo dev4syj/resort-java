@@ -1,14 +1,12 @@
 package com.resort.service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 
+import com.resort.DataNotFoundException;
 import com.resort.domain.ResortUser;
 import com.resort.dto.ResortUserDto;
 import com.resort.repository.ResortUserRepository;
@@ -45,16 +43,14 @@ public class UserService {
 		userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
 		userRepository.save(userDto.toEntity());
 	}
+	
+	public ResortUser getUser(String id) {
+        Optional<ResortUser> user = this.userRepository.findById(id);
+        if (user.isPresent()) {
+            return user.get();
+        } else {
+            throw new DataNotFoundException("user not found");
+        }
+    }
 
-	// 회원가입 -> 중복 체크, 유효성 검사
-	@Transactional(readOnly = true)
-	public Map<String, String> validateHandling(Errors errors) {
-		Map<String, String> validatedResult = new HashMap<>();
-		for (FieldError error : errors.getFieldErrors()) {
-			String validForm = String.format("valid_%s", error.getField());
-			validatedResult.put(validForm, error.getDefaultMessage());
-		}
-
-		return validatedResult;
-	}
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Header -->
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
+
+<body>
+	<!-- Navbar -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+	<!-- Page Header -->
+	<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+		<div class="container text-center py-5">
+			<h1 class="display-3 text-white mb-4 animated slideInDown">Comment Modify</h1>
+		</div>
+	</div>
+	<div id="wrapper">
+		<div class="container">
+			<h5 class="my-3 border-bottom pb-2">답변 수정</h5>
+			<form th:object="${commentForm}" method="post">
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+				<div class="mb-3">
+					<label for="comment" class="form-label">내용</label>
+					<textarea th:field="*{comment}" class="form-control" rows="3"></textarea>
+				</div>
+				<input type="submit" value="저장하기" class="btn btn-primary my-2">
+			</form>
+		</div>
+	</div>
+</body>
+
+<!-- Footer -->
+<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+
+</html>

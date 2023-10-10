@@ -1,33 +1,36 @@
 package com.resort.dto;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 import com.resort.domain.Comment;
 import com.resort.domain.Post;
 import com.resort.domain.ResortUser;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 public class CommentDto {
 
 	// 댓글 서비스 요청
-	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
 	@Builder
+	@Getter
+	@Setter
 	public static class Request {
 
 		private Long commentId;
-		private String comment;
 		private LocalDateTime commentDate;
 		private LocalDateTime commentModifiedDate;
 		private Post rootId;
 		private ResortUser commentUser;
+		
+		@NotEmpty(message = "내용은 필수항목입니다.")
+		private String comment;
 		
 		// Dto -> Entity
 		public Comment toEntity() {
