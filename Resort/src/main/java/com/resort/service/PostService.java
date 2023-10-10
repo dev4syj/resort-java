@@ -11,9 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.resort.DataNotFoundException;
 import com.resort.domain.Post;
+import com.resort.domain.ResortUser;
 import com.resort.dto.PostDto;
+import com.resort.dto.PostDto.Response;
 import com.resort.repository.PostRepository;
-import com.resort.repository.ResortUserRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,12 +24,22 @@ public class PostService {
 
 	private final PostRepository postRepository;
 
+	public Post getPost(Long id) {
+		Optional<Post> post = this.postRepository.findById(id);
+		if (post.isPresent()) {
+			return post.get();
+		} else {
+			throw new DataNotFoundException("post not found");
+		}
+	}
+
 	/* CREATE */
-	public void create(String title, String content) {
+	public void create(String title, String content, ResortUser user) {
 		Post post = new Post();
 		post.setTitle(title);
 		post.setContent(content);
 		post.setPostDate(LocalDateTime.now());
+		post.setPostUser(user);
 		this.postRepository.save(post);
 	}
 
@@ -37,10 +48,10 @@ public class PostService {
 		return this.postRepository.findAll();
 	}
 
-	public Post getPost(long postId) {
+	public Response getPost(long postId) {
 		Optional<Post> post = this.postRepository.findById(postId);
 		if (post.isPresent()) {
-			return post.get();
+			return new PostDto.Response(post.get());
 		} else {
 			throw new DataNotFoundException("post not found");
 		}
