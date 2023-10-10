@@ -1,11 +1,10 @@
 package com.resort.controller;
 
-import java.util.Map;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.resort.dto.ResortUserDto;
@@ -28,20 +27,13 @@ public class ResortUserController {
 
 	// 회원가입
 	@PostMapping("/join")
-	public String join(@Valid ResortUserDto.Request userDto, Errors errors, Model model) {
+	public String join(@Valid @ModelAttribute("userDto") ResortUserDto.Request userDto, BindingResult bindingResult, Model model) {
 
-		if (errors.hasErrors()) {
-			model.addAttribute("userDto", userDto);
-
-			Map<String, String> validatedResult = userService.validateHandling(errors);
-			for (String key : validatedResult.keySet()) {
-				model.addAttribute(key, validatedResult.get(key));
-			}
-
+		if (bindingResult.hasErrors()) {
+			//model.addAttribute("userDto", userDto);
 			return "join";
 		}
-
-		userService.userJoin(userDto);
+		this.userService.userJoin(userDto);
 
 		return "index";
 	}
