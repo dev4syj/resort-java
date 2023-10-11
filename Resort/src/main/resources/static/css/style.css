@@ -106,6 +106,19 @@ img {
 	font-weight: normal;
 }
 
+/*** Join ***/
+.custom-input {
+	width: 300px;
+}
+
+.input-password {
+	width: 200px;
+}
+
+.input-address {
+	width: 500px;
+}
+
 
 /*** Navbar ***/
 .navbar.sticky-top {
@@ -509,8 +522,8 @@ img {
 
 .col-lg-6 img {
 	display: block;
-    width: 100%;
-    height: 379px;
+	width: 100%;
+	height: 379px;
 }
 
 .room-text {
@@ -519,7 +532,7 @@ img {
 	padding-top: 35px;
 	padding-right: 45px;
 	padding-bottom: 37px;
-	
+
 	max-width: 558px;
 
 }
