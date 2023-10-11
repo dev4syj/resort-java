@@ -37,13 +37,13 @@ public class ResortUser {
 	@Column(length = 15, nullable = false)
 	private String name;
 
-	@Column(length = 11, nullable = false, unique = true)
+	@Column(length = 11, nullable = false)
 	private String phone;
 
-	@Column(length = 15, nullable = false)
+	@Column(length = 50, nullable = false)
 	private String address;
 
-	@Column(length = 30, nullable = false, unique = true)
+	@Column(length = 50, nullable = false)
 	private String email;
 
 }

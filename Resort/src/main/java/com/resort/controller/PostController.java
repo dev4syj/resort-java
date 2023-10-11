@@ -49,13 +49,13 @@ public class PostController {
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/create")
-	public String noticeCreate(NoticeForm noticeForm) {
+	public String postCreate(NoticeForm noticeForm) {
 		return "notice_form";
 	}
 
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/create")
-	public String noticeCreate(@Valid NoticeForm noticeForm, BindingResult bindingResult, Principal principal) {
+	public String postCreate(@Valid NoticeForm noticeForm, BindingResult bindingResult, Principal principal) {
 		if (bindingResult.hasErrors()) {
 			return "notice_form";
 		}
@@ -66,7 +66,7 @@ public class PostController {
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/modify/{postId}")
-	public String questionModify(NoticeForm noticeForm, @PathVariable("postId") Long postId, Principal principal) {
+	public String postModify(NoticeForm noticeForm, @PathVariable("postId") Long postId, Principal principal) {
 		Post post = this.postService.getPost(postId);
 		if (!post.getPostUser().getId().equals(principal.getName())) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정권한이 없습니다.");
@@ -78,7 +78,7 @@ public class PostController {
 	
 	@PreAuthorize("isAuthenticated()")
     @PostMapping("/modify/{postId}")
-    public String questionModify(@Valid NoticeForm noticeForm, BindingResult bindingResult, 
+    public String postModify(@Valid NoticeForm noticeForm, BindingResult bindingResult, 
             Principal principal, @PathVariable("postId") Long postId) {
         if (bindingResult.hasErrors()) {
             return "notice_form";
@@ -94,7 +94,7 @@ public class PostController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/delete/{postId}")
-	public String questionDelete(Principal principal, @PathVariable("postId") long postId) {
+	public String postDelete(Principal principal, @PathVariable("postId") long postId) {
 		Post post = this.postService.getPost(postId);
 		if (!post.getPostUser().getId().equals(principal.getName())) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");

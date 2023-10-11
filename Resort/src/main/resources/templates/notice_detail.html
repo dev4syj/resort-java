@@ -35,8 +35,7 @@
 					</div>
 				</div>
 			</div>
-			<h4 class="mt-5 mb-5" th:text="${postDetail.content}"></h4>
-
+			<pre><h4 class="mt-5 mb-5" th:text="${postDetail.content}"></h4></pre>
 			<div class="my-3 d-flex justify-content-end">
 				<a th:href="@{|/notice/modify/${postDetail.postId}|}" class="btn btn-sm btn-outline-secondary me-2"
 					sec:authorize="isAuthenticated()"
@@ -53,7 +52,7 @@
 			<h6 th:text="|${#lists.size(postDetail.comments)}개의 답변이 있습니다.|" class="my-3"></h6>
 			<div class="my-2" th:each="comments : ${postDetail.comments}">
 				<div class="badge text-dark p-2 text-start d-flex justify-content-between">
-					<div class="mb-2">
+					<div class="mt-2">
 						<span th:if="${comments.commentUser != null}" th:text="${comments.commentUser.id}"></span>
 					</div>
 					<div class="text-end">
@@ -65,7 +64,7 @@
 				</div>
 				<div class="card">
 					<div class="card-body">
-						<div class="card-text mt-2" style="white-space: pre-line;" th:text="${comments.comment}"></div>
+						<pre><div class="card-text mt-2" style="white-space: pre-line;" th:text="${comments.comment}"></div></pre>
 						<div class="d-flex justify-content-end mt-3">
 							<a th:href="@{|/comment/modify/${comments.commentId}|}"
 								class="btn btn-sm btn-outline-secondary me-2" sec:authorize="isAuthenticated()"
@@ -107,9 +106,11 @@
 					});
 				});
 			</script>
-</body>
+		</div>
+	</div>
+	<!-- Footer -->
+	<th:block th:replace="fragments/footer :: footerFragment"></th:block>
 
-<!-- Footer -->
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+</body>
 
 </html>

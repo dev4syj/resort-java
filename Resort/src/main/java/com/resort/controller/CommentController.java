@@ -52,7 +52,7 @@ public class CommentController {
 	/* UPDATE */
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/modify/{commentId}")
-	public String answerModify(CommentForm commentForm, @PathVariable("commentId") long commentId,
+	public String commentModify(CommentForm commentForm, @PathVariable("commentId") long commentId,
 			Principal principal) {
 		Comment comment = this.commentService.getcomment(commentId);
 		if (!comment.getCommentUser().getId().equals(principal.getName())) {
@@ -65,7 +65,7 @@ public class CommentController {
 
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/modify/{commentId}")
-	public String answerModify(@Valid CommentForm commentForm, BindingResult bindingResult,
+	public String commentModify(@Valid CommentForm commentForm, BindingResult bindingResult,
 			@PathVariable("commentId") long commentId, Principal principal) {
 		if (bindingResult.hasErrors()) {
 			return "comment_form";
@@ -80,7 +80,7 @@ public class CommentController {
 	
 	@PreAuthorize("isAuthenticated()")
     @GetMapping("/delete/{commentId}")
-    public String answerDelete(Principal principal, @PathVariable("commentId") long commentId) {
+    public String commentDelete(Principal principal, @PathVariable("commentId") long commentId) {
 		Comment comment = this.commentService.getcomment(commentId);
         if (!comment.getCommentUser().getId().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제권한이 없습니다.");

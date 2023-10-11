@@ -10,13 +10,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.resort.DataNotFoundException;
 import com.resort.domain.Post;
 import com.resort.domain.ResortUser;
-import com.resort.dto.PostDto;
-import com.resort.dto.PostDto.Response;
 import com.resort.repository.PostRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -26,15 +23,6 @@ import lombok.RequiredArgsConstructor;
 public class PostService {
 
 	private final PostRepository postRepository;
-
-	public Post getPost(long postId) {
-		Optional<Post> post = this.postRepository.findById(postId);
-		if (post.isPresent()) {
-			return post.get();
-		} else {
-			throw new DataNotFoundException("post not found");
-		}
-	}
 
 	/* CREATE */
 	public void create(String title, String content, ResortUser user) {
@@ -50,8 +38,19 @@ public class PostService {
 	public Page<Post> getList(int page) {
 		List<Sort.Order> sorts = new ArrayList<>();
 		sorts.add(Sort.Order.desc("postDate"));
-		Pageable pageable = PageRequest.of(page, 5, Sort.by(sorts));
+		Pageable pageable = PageRequest.of(page, 10, Sort.by(sorts));
 		return this.postRepository.findAll(pageable);
+	}
+
+	public Post getPost(long postId) {
+		Optional<Post> _post = this.postRepository.findById(postId);
+		if (_post.isPresent()) {
+			Post post = _post.get();
+			updateView(post);
+			return post;
+		} else {
+			throw new DataNotFoundException("post not found");
+		}
 	}
 
 	/* UPDATE */
@@ -62,20 +61,14 @@ public class PostService {
 		this.postRepository.save(post);
 	}
 
+	/* DELETE */
 	public void delete(Post post) {
 		this.postRepository.delete(post);
 	}
-
-	/* Views Counting */
-	@Transactional
-	public int updateView(Long id) {
-		return postRepository.updateView(id);
-	}
-
-	/* Paging and Sort */
-	@Transactional(readOnly = true)
-	public Page<Post> pageList(Pageable pageable) {
-		return postRepository.findAll(pageable);
+	
+	public void updateView(Post post) {
+		post.setView(post.getView()+1);
+		this.postRepository.save(post);
 	}
 
 }
