@@ -14,6 +14,7 @@
 			<h1 class="display-3 text-white mb-4 animated slideInDown">Notice Detail</h1>
 		</div>
 	</div>
+
 	<div id="wrapper">
 		<div class="container">
 			<!-- 게시글 보기 -->
@@ -49,32 +50,32 @@
 			</div>
 
 			<!-- 댓글 보기 -->
-			<h6 th:text="|${#lists.size(postDetail.comments)}개의 답변이 있습니다.|"></h6>
-			<div class="card my-2" th:each="comments : ${postDetail.comments}">
-				<div class="card-body">
-
-					<div class="badge bg-light text-dark p-2 text-start">
-						<div class="mb-2">
-							작성자: <span th:if="${comments.commentUser != null}" th:text="${comments.commentUser.id}"></span>
-						</div>
-						<div>
-							작성일: <span class="me-2" th:text="${#temporals.format(comments.commentDate, 'yyyy-MM-dd HH:mm')}"></span>
-							수정일: <span th:if="${comments.commentModifiedDate != null}"
-								th:text="${#temporals.format(comments.commentModifiedDate, 'yyyy-MM-dd HH:mm')}"></span>
-						</div>
+			<h6 th:text="|${#lists.size(postDetail.comments)}개의 답변이 있습니다.|" class="my-3"></h6>
+			<div class="my-2" th:each="comments : ${postDetail.comments}">
+				<div class="badge text-dark p-2 text-start d-flex justify-content-between">
+					<div class="mb-2">
+						<span th:if="${comments.commentUser != null}" th:text="${comments.commentUser.id}"></span>
 					</div>
-
-					<div class="card-text mt-2" style="white-space: pre-line;" th:text="${comments.comment}"></div>
-
-					<div class="d-flex justify-content-end mt-3">
-						<a th:href="@{|/comment/modify/${comments.commentId}|}"
-							class="btn btn-sm btn-outline-secondary me-2" sec:authorize="isAuthenticated()"
-							th:if="${comments.commentUser != null and #authentication.getPrincipal().getUsername() == comments.commentUser.id}"
-							th:text="수정"></a>
-						<a href="javascript:void(0);" th:data-uri="@{|/comment/delete/${comments.commentId}|}"
-							class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
-							th:if="${comments.commentUser != null and #authentication.getPrincipal().getUsername() == comments.commentUser.id}"
-							th:text="삭제"></a>
+					<div class="text-end">
+						작성일: <span class="me-2"
+							th:text="${#temporals.format(comments.commentDate, 'yyyy-MM-dd HH:mm')}"></span>
+						<span th:if="${comments.commentModifiedDate != null}">수정일: </span>
+						<span th:text="${#temporals.format(comments.commentModifiedDate, 'yyyy-MM-dd HH:mm')}"></span>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<div class="card-text mt-2" style="white-space: pre-line;" th:text="${comments.comment}"></div>
+						<div class="d-flex justify-content-end mt-3">
+							<a th:href="@{|/comment/modify/${comments.commentId}|}"
+								class="btn btn-sm btn-outline-secondary me-2" sec:authorize="isAuthenticated()"
+								th:if="${comments.commentUser != null and #authentication.getPrincipal().getUsername() == comments.commentUser.id}"
+								th:text="수정"></a>
+							<a href="javascript:void(0);" th:data-uri="@{|/comment/delete/${comments.commentId}|}"
+								class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
+								th:if="${comments.commentUser != null and #authentication.getPrincipal().getUsername() == comments.commentUser.id}"
+								th:text="삭제"></a>
+						</div>
 					</div>
 				</div>
 			</div>
