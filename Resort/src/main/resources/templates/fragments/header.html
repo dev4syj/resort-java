@@ -8,6 +8,18 @@
 
 		<title>Serenitas Resort</title>
 
+		<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
+
+		<script>
+			document.addEventListener('DOMContentLoaded', function () {
+				var calendarEl = document.getElementById('calendar');
+				var calendar = new FullCalendar.Calendar(calendarEl, {
+					initialView: 'dayGridMonth'
+				});
+				calendar.render();
+			});
+		</script>
+
 		<!-- Favicon -->
 		<link href="/img/favicon.ico" rel="icon">
 
@@ -60,11 +72,7 @@
 			</div>
 			<div class="col-lg-5 px-5 text-end">
 				<div class="h-100 d-inline-flex align-items-center mx-n2">
-					<span>Follow Us:</span>
-					<a class="btn btn-link text-light" href=""><i class="fab fa-facebook-f"></i></a>
-					<a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>
-					<a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>
-					<a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>
+
 				</div>
 			</div>
 		</div>

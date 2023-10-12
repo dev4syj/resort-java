@@ -2,7 +2,7 @@
 <html lang="zxx">
 
 <!-- Header -->
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
 
 <body>
 	<!-- Navbar -->
@@ -62,7 +62,7 @@
 	</div>
 
 	<!-- Footer -->
-	<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
 
 	<script type="text/javascript">
 		$(document).ready(function () {

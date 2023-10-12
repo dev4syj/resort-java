@@ -2,7 +2,7 @@
 <html lang="zxx">
 
 <!-- Header -->
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
 
 <body>
 	<!-- Navbar -->
@@ -169,9 +169,9 @@
 			</div>
 		</div>
 	</div>
-</body>
 
-<!-- Footer -->
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+	<!-- Footer -->
+	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+</body>
 
 </html>
