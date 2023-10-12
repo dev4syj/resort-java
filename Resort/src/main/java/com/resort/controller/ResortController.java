@@ -36,9 +36,9 @@ public class ResortController {
 		return "reservation";
 	}
 
-	@GetMapping("/cal")
-	public String cal() {
-		return "cal";
+	@GetMapping("/status")
+	public String status() {
+		return "status";
 	}
 
 }

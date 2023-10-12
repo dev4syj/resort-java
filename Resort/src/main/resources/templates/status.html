@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+
+<body>
+	<!-- Navbar -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+	<!-- Page Header -->
+	<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+		<div class="container text-center py-5">
+			<h1 class="display-3 text-white mb-4 animated slideInDown">Calendar</h1>
+		</div>
+	</div>
+	
+	<!-- Calendar -->
+	<div id="wrapper mx-10">
+		<div class="container">
+			<div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.2s" style="max-width: 500px;">
+				<p class="fs-5 fw-bold text-primary">Do you Wanna go on vacation?</p>
+				<h1 class="display-5 mb-5">Reservation Status</h1>
+			</div>
+			<div id='calendar' class="wow fadeInUp"></div>
+		</div>
+	</div>
+	<!-- Footer -->
+	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
 <html lang="zxx">
 
 <!-- Header -->
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
 
 <body>
 	<!-- Navbar -->
@@ -23,13 +23,27 @@
 					<label for="comment" class="form-label">내용</label>
 					<textarea th:field="*{comment}" class="form-control" rows="3"></textarea>
 				</div>
-				<input type="submit" value="저장하기" class="btn btn-primary my-2">
+				<div class="d-flex justify-content-end">
+					<input type="submit" value="수정하기" class="update btn btn-primary my-2 me-2">
+					<a href="#" class="btn btn-secondary my-2" onclick="history.back(); return false;">이전</a>
+				</div>
 			</form>
 		</div>
 	</div>
 
+	<script layout:fragment="script" type='text/javascript'>
+		const update_elements = document.getElementsByClassName("update");
+		Array.from(update_elements).forEach(function (element) {
+			element.addEventListener('click', function () {
+				if (confirm("정말로 수정하시겠습니까?")) {
+					location.href = this.dataset.uri;
+				};
+			});
+		});
+	</script>
+
 	<!-- Footer -->
-	<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
 </body>
 
 </html>

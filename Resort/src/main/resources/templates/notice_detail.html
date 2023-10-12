@@ -2,7 +2,7 @@
 <html>
 
 <!-- Header -->
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
 
 <body>
 	<!-- Navbar -->
@@ -37,14 +37,13 @@
 			</div>
 			<pre><h4 class="mt-5 mb-5" th:text="${postDetail.content}"></h4></pre>
 			<div class="my-3 d-flex justify-content-end">
-				<a th:href="@{|/notice/modify/${postDetail.postId}|}" class="btn btn-sm btn-outline-secondary me-2"
-					sec:authorize="isAuthenticated()"
-					th:if="${postDetail.postUser != null and #authentication.getPrincipal().getUsername() == postDetail.postUser.id}"
+				<a th:href="@{|/notice/update/${postDetail.postId}|}" class="update btn btn-sm btn-outline-secondary me-2"
+					th:if="${postDetail.postUser != null and (#authentication.getPrincipal().getUsername() == postDetail.postUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
 					th:text="수정"></a>
 
-				<a href="javascript:void(0);" th:data-uri="@{|/notice/delete/${postDetail.postId}|}"
-					class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
-					th:if="${postDetail.postUser != null and #authentication.getPrincipal().getUsername() == postDetail.postUser.id}"
+				<a th:href="@{|/notice/delete/${postDetail.postId}|}"
+					class="delete btn btn-sm btn-outline-secondary me-2"
+					th:if="${postDetail.postUser != null and (#authentication.getPrincipal().getUsername() == postDetail.postUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
 					th:text="삭제"></a>
 			</div>
 
@@ -66,13 +65,14 @@
 					<div class="card-body">
 						<pre><div class="card-text mt-2" style="white-space: pre-line;" th:text="${comments.comment}"></div></pre>
 						<div class="d-flex justify-content-end mt-3">
-							<a th:href="@{|/comment/modify/${comments.commentId}|}"
-								class="btn btn-sm btn-outline-secondary me-2" sec:authorize="isAuthenticated()"
-								th:if="${comments.commentUser != null and #authentication.getPrincipal().getUsername() == comments.commentUser.id}"
+							<a th:href="@{|/comment/update/${comments.commentId}|}"
+								class="update btn btn-sm btn-outline-secondary me-2"
+								th:if="${comments.commentUser != null and (#authentication.getPrincipal().getUsername() == comments.commentUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
 								th:text="수정"></a>
-							<a href="javascript:void(0);" th:data-uri="@{|/comment/delete/${comments.commentId}|}"
-								class="delete btn btn-sm btn-outline-secondary" sec:authorize="isAuthenticated()"
-								th:if="${comments.commentUser != null and #authentication.getPrincipal().getUsername() == comments.commentUser.id}"
+
+							<a th:href="@{|/comment/delete/${comments.commentId}|}"
+								class="delete btn btn-sm btn-outline-secondary me-2"
+								th:if="${comments.commentUser != null and (#authentication.getPrincipal().getUsername() == comments.commentUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
 								th:text="삭제"></a>
 						</div>
 					</div>
@@ -106,10 +106,13 @@
 					});
 				});
 			</script>
+
+			
 		</div>
 	</div>
+
 	<!-- Footer -->
-	<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
 
 </body>
 

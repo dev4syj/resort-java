@@ -16,11 +16,12 @@
 				<a href="/service" class="nav-item nav-link">Services</a>
 				<a href="/notice/list" class="nav-item nav-link">Notice</a>
 				<a href="/contact" class="nav-item nav-link">Contact</a>
+				<a sec:authorize="hasRole('ADMIN')" th:href="@{/status}" class="nav-item nav-link">Status</a>
 				<a sec:authorize="isAnonymous()" th:href="@{/join}" class="nav-item nav-link">Join</a>
 				<a sec:authorize="isAnonymous()" th:href="@{/login}" class="nav-item nav-link">Login</a>
 				<a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="nav-item nav-link">Logout</a>
 			</div>
-			<a href="/reservation" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block">Book now<i
+			<a href="/reservation" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block" style="white-space: nowrap;">Book now<i
 					class="fa fa-arrow-right ms-3"></i></a>
 		</div>
 	</nav>
