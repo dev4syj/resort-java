@@ -2,7 +2,7 @@
 <html>
 
 <!-- Header -->
-<th:block th:replace="fragments/header :: headerFragment"></th:block>
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
 
 <body>
 	<!-- Navbar -->
@@ -25,13 +25,11 @@
 			<div class="row justify-content-center wow fadeInUp" data-wow-delay="0.2s">
 				<form th:action="@{/join}" th:object="${userDto}" method="post" class="col-md-5">
 					<div class="bg-light text-dark p-4">
-						<h2 class="form-title mb-5">회원가입</h2>
 						<div class="mb-3">
 							<label for="id" class="form-label">사용자ID</label>
 							<input type="text" th:field="*{id}" class="form-control">
 							<div th:if="${#fields.hasErrors('id')}" th:errors="*{id}" class="alert alert-danger"
-								role="alert">
-							</div>
+								role="alert"></div>
 						</div>
 						<div class="mb-3">
 							<label for="password" class="form-label">비밀번호</label>
@@ -45,6 +43,7 @@
 							<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="alert alert-danger"
 								role="alert">
 							</div>
+
 						</div>
 						<div class="mb-3">
 							<label for="phone" class="form-label">전화번호</label>
@@ -74,9 +73,9 @@
 			</div>
 		</div>
 	</div>
-</body>
 
-<!-- Footer -->
-<th:block th:replace="fragments/footer :: footerFragment"></th:block>
+	<!-- Footer -->
+	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+</body>
 
 </html>

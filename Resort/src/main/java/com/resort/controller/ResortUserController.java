@@ -1,5 +1,6 @@
 package com.resort.controller;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,8 +33,18 @@ public class ResortUserController {
 		if (bindingResult.hasErrors()) {
 			return "join";
 		}
-		userService.userJoin(userDto);
-
+		
+		try {
+			userService.userJoin(userDto);
+        }catch(DataIntegrityViolationException e) {
+            e.printStackTrace();
+            bindingResult.rejectValue("id", "error.userDto", "이미 등록된 사용자입니다.");
+            return "join";
+        }catch(Exception e) {
+            e.printStackTrace();
+            bindingResult.reject("signup Failed", e.getMessage());
+            return "join";
+        }
 		return "index";
 	}
 
