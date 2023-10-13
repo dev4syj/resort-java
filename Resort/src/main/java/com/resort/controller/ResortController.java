@@ -26,19 +26,10 @@ public class ResortController {
 		return "rooms";
 	}
 
-	@GetMapping("/service")
-	public String service() {
-		return "service";
-	}
-
 	@GetMapping("/reservation")
 	public String reservation() {
 		return "reservation";
 	}
 
-	@GetMapping("/status")
-	public String status() {
-		return "status";
-	}
 
 }

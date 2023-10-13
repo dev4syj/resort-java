@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class PostService {
 
+	@Autowired
 	private final PostRepository postRepository;
 
 	/* CREATE */
@@ -61,14 +63,14 @@ public class PostService {
 		this.postRepository.save(post);
 	}
 
+	public void updateView(Post post) {
+		post.setView(post.getView() + 1);
+		this.postRepository.save(post);
+	}
+
 	/* DELETE */
 	public void delete(Post post) {
 		this.postRepository.delete(post);
-	}
-	
-	public void updateView(Post post) {
-		post.setView(post.getView()+1);
-		this.postRepository.save(post);
 	}
 
 }

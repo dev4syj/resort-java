@@ -273,7 +273,6 @@ img {
 	top: 0;
 	left: 0;
 	overflow: hidden;
-	z-index: -1;
 }
 
 .service-item .service-img img {
@@ -284,7 +283,7 @@ img {
 	object-fit: cover;
 	transform: scale(1.2);
 	transition: .3s;
-	z-index: -1;
+
 }
 
 .service-item:hover .service-img img {
@@ -292,9 +291,11 @@ img {
 }
 
 .service-item .service-text {
-	background: #FFFFFF;
+	background: rgba(0, 0, 0, .08);
 	box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+	transform: scale(1);
 	transition: .3s;
+
 }
 
 .service-item:hover .service-text {
@@ -306,7 +307,7 @@ img {
 	transition: .3;
 }
 
-.service-item:hover .service-text h4 {
+.service-item .service-text h4 {
 	color: #FFFFFF;
 }
 
