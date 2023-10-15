@@ -33,7 +33,7 @@ public class Post {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long postId;
 
-	@Column(length = 50, nullable = false)
+	@Column(length = 255, nullable = false)
 	private String title;
 
 	@Column(nullable = false)
