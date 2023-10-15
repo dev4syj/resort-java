@@ -23,6 +23,10 @@
 				<div class="col-lg-6 wow fadeIn" data-wow-delay="0.1s">
 					<p class="fs-5 fw-bold text-primary">Contact Us</p>
 					<h1 class="display-5 mb-5">If You Have Any Query, Please Contact Us</h1>
+					<h4>TEL 098 345 6712
+						<br />
+						EMAIL  serenitas@info.com
+					</h4>
 				</div>
 				<div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s" style="min-height: 450px;">
 					<div class="position-relative rounded overflow-hidden h-100">
@@ -37,27 +41,27 @@
 
 	<!-- Footer -->
 	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
-
 	<script type="text/javascript"
-		src="//dapi.kakao.com/v2/maps/sdk.js?appkey=35434dca04602fd4e0c19bab252298b2"></script>
+	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c25f398e81ee36a4c9277440d8b3e31f"></script>
 
-		<script>
-			document.addEventListener("DOMContentLoaded", function() {
-        var container = document.getElementById('map');
-			var options = {
-				center: new kakao.maps.LatLng(33.430475, 126.928236),
+	<script>
+
+		var container = document.getElementById('map');
+		var options = {
+			center: new kakao.maps.LatLng(33.2392, 126.3358),
 			level: 3
-        };
+		};
 
-			var map = new kakao.maps.Map(container, options);
+		var map = new kakao.maps.Map(container, options);
 
-			var marker = new kakao.maps.Marker({
-				position: map.getCenter()
-        });
+		var marker = new kakao.maps.Marker({
+			position: map.getCenter()
+		});
 
-			marker.setMap(map);
-    });
-	</script>
+		marker.setMap(map);
+
+</script>
+
 </body>
 
 </html>
