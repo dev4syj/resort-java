@@ -38,12 +38,12 @@
 			<pre><h4 class="mt-5 mb-5" th:text="${postDetail.content}"></h4></pre>
 			<div class="my-3 d-flex justify-content-end">
 				<a th:href="@{|/notice/update/${postDetail.postId}|}" class="update btn btn-sm btn-outline-secondary me-2"
-					th:if="${postDetail.postUser != null and (#authentication.getPrincipal().getUsername() == postDetail.postUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
+					th:if="${#authorization.expression('isAuthenticated()') and (#authentication.getPrincipal().getUsername() == postDetail.postUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
 					th:text="수정"></a>
 
 				<a th:href="@{|/notice/delete/${postDetail.postId}|}"
 					class="delete btn btn-sm btn-outline-secondary me-2"
-					th:if="${postDetail.postUser != null and (#authentication.getPrincipal().getUsername() == postDetail.postUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
+					th:if="${#authorization.expression('isAuthenticated()') and (#authentication.getPrincipal().getUsername() == postDetail.postUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
 					th:text="삭제"></a>
 			</div>
 
@@ -67,12 +67,12 @@
 						<div class="d-flex justify-content-end mt-3">
 							<a th:href="@{|/comment/update/${comments.commentId}|}"
 								class="update btn btn-sm btn-outline-secondary me-2"
-								th:if="${comments.commentUser != null and (#authentication.getPrincipal().getUsername() == comments.commentUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
+								th:if="${#authorization.expression('isAuthenticated()') and (#authentication.getPrincipal().getUsername() == comments.commentUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
 								th:text="수정"></a>
 
 							<a th:href="@{|/comment/delete/${comments.commentId}|}"
 								class="delete btn btn-sm btn-outline-secondary me-2"
-								th:if="${comments.commentUser != null and (#authentication.getPrincipal().getUsername() == comments.commentUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
+								th:if="${#authorization.expression('isAuthenticated()') and (#authentication.getPrincipal().getUsername() == comments.commentUser.id or #authorization.expression('hasRole(''ROLE_ADMIN'')'))}"
 								th:text="삭제"></a>
 						</div>
 					</div>
