@@ -23,18 +23,21 @@
 			<div class="row justify-content-center">
 				<div class="col-lg-6">
 					<div>
-						<form action="check-duplicate-reservation" method="post" class="wow fadeInUp" data-wow-delay="0.2s">
+						<form action="check-duplicate-reservation" method="post" class="wow fadeInUp"
+							data-wow-delay="0.2s">
 							<div class="mb-3">
 								<label for="date-range" class="form-label">Duration</label>
 								<input id="date-range" type="text" class="form-control">
 							</div>
 							<div class="mb-3">
 								<label for="adults" class="form-label">Adults</label>
-								<div class="pro-qty"><input id="adults" type="text" value="0" class="form-control"></div>
+								<div class="pro-qty"><input id="adults" type="text" value="0" class="form-control">
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="children" class="form-label">Children</label>
-								<div class="pro-qty"><input id="children" type="text" value="0" class="form-control"></div>
+								<div class="pro-qty"><input id="children" type="text" value="0" class="form-control">
+								</div>
 							</div>
 							<div class="mb-3">
 								<label for="rooms" class="form-label">Rooms</label>
@@ -45,7 +48,7 @@
 								<select id="room-Type" class="form-select mb-3">
 									<option value="">Serenitas Standard</option>
 									<option value="">Serenitas Sweet</option>
-									<option value="">Serenitas Deluxe</option>			
+									<option value="">Serenitas Deluxe</option>
 								</select>
 							</div>
 							<div class="d-flex justify-content-end mt-3">
@@ -61,6 +64,12 @@
 
 	<!-- Footer -->
 	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+
+	<!-- Date Range Picker -->
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
 
 	<script type="text/javascript">
 		$(document).ready(function () {
