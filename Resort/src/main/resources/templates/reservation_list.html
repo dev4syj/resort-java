@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+<script src="/js/daypilot-all.min.js"></script>
+
+<body>
+	<!-- Navbar -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+	<!-- Page Header -->
+	<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+		<div class="container text-center py-5">
+			<h1 class="display-3 text-white mb-4 animated slideInDown">Reservation</h1>
+		</div>
+	</div>
+	<div id="wrapper">
+		<div class="container">
+			<div id="calendar"></div>
+		</div>
+	</div>
+	<!-- <div id="dp"></div> -->
+
+	<div th:with="eventList=${BookingList}">
+
+		<script th:inline="text">
+			$(document).ready(function () {
+				$.ajax({
+					url: '/calendar/events',
+					type: 'GET',
+					dataType: 'json',
+					success: function (data) {
+						var events = data;
+						$('#calendar').fullCalendar({
+							events: events
+							// 다른 FullCalendar 옵션 설정
+						});
+					}
+				});
+			});
+		</script>
+
+		<script th:inline="javascript">
+			var events = [];
+
+			events.push({
+				sortIdx: 0,
+				title: 'room1',
+				color: "#7fa59d",
+				start: '',
+				end: '',
+				url: ''
+			});
+			events.push({
+				sortIdx: 0,
+				title: '예약가능',
+				start: '',
+				end: '',
+				url: ''
+			});
+
+			events.push({
+				sortIdx: 1,
+				title: '',
+				color: "#7fa59d",
+				start: '',
+				end: '',
+				url: ''
+			});
+
+			events.push({
+				sortIdx: 1,
+				title: '예약가능',
+				start: '',
+				end: '',
+				url: ''
+			});
+
+			events.push({
+				sortIdx: 2,
+				title: '',
+				color: "#7fa59d",
+				start: '',
+				end: '',
+				url: ''
+			});
+			events.push({
+				sortIdx: 2,
+				title: '예약가능',
+				start: '',
+				end: '',
+				url: ''
+			});
+			console.log(events);
+		</script>
+	</div>
+
+	<script th:inline="javascript">
+		document.addEventListener('DOMContentLoaded', function () {
+			var calendarEl = document.getElementById('calendar');
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				height: '700px',
+				expandRows: false,
+				initialView: 'dayGridMonth',
+				eventBorderColor: '#c7bda4',
+				eventBackgroundColor: '#c7bda4',
+				headerToolbar: {
+					start: 'prev next today',
+					center: 'title',
+					end: ''
+				},
+				titleFormat: function (date) {
+					return date.date.year + '년 '
+						+ (parseInt(date.date.month) + 1) + '월';
+				},
+				selectable: false,
+				droppable: false,
+				editable: false,
+				nowIndicator: true,
+				locale: 'ko',
+				events: events,
+				eventClick: function (info) {
+					window.location.href = info.event.url;
+				},
+				eventOrder: 'sortIdx'
+			});
+			calendar.render();
+		});
+	</script>
+
+	<!-- Footer -->
+	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+
+</body>
+
+</html>
