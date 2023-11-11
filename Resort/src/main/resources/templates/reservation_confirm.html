@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+
+<body>
+	<!-- Navbar -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+	<!-- Page Header -->
+	<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+		<div class="container text-center py-5">
+			<h1 class="display-3 text-white mb-4 animated slideInDown">Check your Reservation</h1>
+		</div>
+	</div>
+	<div id="wrapper">
+		<div class="container">
+			<h2 class="mb-4">Reservation Confirmation</h2>
+			<table class="table table-striped">
+				<tbody>
+					<tr>
+						<th scope="row">Reservation User</th>
+						<td th:text="${reservationConfirmed.user.name}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Reservation Date</th>
+						<td th:text="${reservationConfirmed.reservationDate}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Check-in Date</th>
+						<td th:text="${reservationConfirmed.checkInDate}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Adults</th>
+						<td th:text="${reservationConfirmed.adult}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Children</th>
+						<td th:text="${reservationConfirmed.children}"></td>
+					</tr>
+					<tr>
+						<th scope="row">Room Type</th>
+						<td th:text="${reservationConfirmed.room.type}"></td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div class="d-flex justify-content-end mt-3">
+				<a href="/status" class="btn btn-secondary my-2 me-2">Back</a>
+			</div>
+		</div>
+	</div>
+	<!-- Footer -->
+	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+</body>
+
+</html>

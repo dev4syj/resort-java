@@ -1,10 +1,10 @@
 package com.resort.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.resort.domain.Reservation;
 import com.resort.domain.ResortUser;
+import com.resort.domain.Room;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -24,17 +24,14 @@ public class ReservationDto {
 		private long reservationId;
 		private int adult;
 		private int children;
-		private int roomId;
+		private Room roomId;
 		private ResortUser reservationUser;
 		
-		@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-		private Date checkInDate;
+		private String checkInDate;
 		
-		@JsonFormat(pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
-		private Date checkOutDate;
+//		private String checkOutDate;
 		
-		@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Seoul")
-		private Date reservationDate;
+		private LocalDate reservationDate;
 		
 		// Dto -> Entity
         public Reservation toEntity() {
@@ -45,7 +42,7 @@ public class ReservationDto {
         							.roomId(roomId)
         							.reservationUser(reservationUser)
         							.checkInDate(checkInDate)
-        							.checkOutDate(checkOutDate)
+        							//.checkOutDate(checkOutDate)
         							.reservationDate(reservationDate)
         							.build();
 
@@ -59,11 +56,11 @@ public class ReservationDto {
 		private final long reservationId;
 		private final int adult;
 		private final int children;
-		private final int roomId;
+		private final Room roomId;
 		private final ResortUser reservationUser;
-		private final Date checkInDate;
-		private final Date checkOutDate;
-		private final Date reservationDate;
+		private final String checkInDate;
+		//private final String checkOutDate;
+		private final LocalDate reservationDate;
 
 		// Entity -> Dto
 		public Response(Reservation reservation) {
@@ -73,7 +70,7 @@ public class ReservationDto {
 			this.roomId = reservation.getRoomId();
 			this.reservationUser = reservation.getReservationUser();
 			this.checkInDate = reservation.getCheckInDate();
-			this.checkOutDate = reservation.getCheckOutDate();
+			//this.checkOutDate = reservation.getCheckOutDate();
 			this.reservationDate = reservation.getReservationDate();
 		}
 	}

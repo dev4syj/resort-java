@@ -5,14 +5,45 @@
 <th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 
-<script>
+<script th:inline="javascript">
 	document.addEventListener('DOMContentLoaded', function () {
 		var calendarEl = document.getElementById('calendar');
-		var calendar = new FullCalendar.Calendar(calendarEl, {
-			initialView: 'dayGridMonth'
+
+		// 서버로부터 이벤트 데이터를 비동기적으로 가져오기
+		var request = $.ajax({
+			url: "/event",
+			method: "GET"
 		});
-		calendar.render();
+
+		request.done(function (data) {
+			// 캘린더 초기화
+			var calendar = new FullCalendar.Calendar(calendarEl, {
+				initialView: 'dayGridMonth',
+				locale: 'ko',
+				dateClick: function (info) {
+					var clickedDate = info.dateStr;
+					var selectedDate = new Date(clickedDate);
+					var today = new Date();
+
+					today.setHours(0, 0, 0, 0);
+					selectedDate.setHours(0, 0, 0, 0);
+
+					if (selectedDate < today) {
+						alert('이전 날짜는 선택할 수 없습니다. 다시 선택해주세요.');
+					} else {
+						window.location.href = '/reservation?selectedDate=' + clickedDate;
+					}
+				}
+			});
+
+			// FullCalendar에 이벤트 추가
+			calendar.addEventSource(data);
+
+			// 캘린더 렌더링
+			calendar.render();
+		});
 	});
+
 </script>
 
 <body>
