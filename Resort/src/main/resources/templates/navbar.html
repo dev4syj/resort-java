@@ -18,10 +18,16 @@
 				<a sec:authorize="hasRole('ADMIN')" th:href="@{/status}" class="nav-item nav-link">Status</a>
 				<a sec:authorize="isAnonymous()" th:href="@{/join}" class="nav-item nav-link">Join</a>
 				<a sec:authorize="isAnonymous()" th:href="@{/login}" class="nav-item nav-link">Login</a>
+				<a sec:authorize="isAuthenticated()" class="nav-item nav-link">
+					<i class="fas fa-user"></i> <!-- Font Awesome의 사용자 아이콘 -->
+					<span
+						th:text="|${#authorization.expression('isAuthenticated()') ? #authentication.name : ''}|"></span>
+				</a>
 				<a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="nav-item nav-link">Logout</a>
+
 			</div>
-			<a href="/reservationList" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block" style="white-space: nowrap;">Book now<i
-					class="fa fa-arrow-right ms-3"></i></a>
+			<a href="/reservationList" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block"
+				style="white-space: nowrap;">Book now<i class="fa fa-arrow-right ms-3"></i></a>
 		</div>
 	</nav>
 </body>
