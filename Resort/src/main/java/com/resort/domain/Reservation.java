@@ -27,7 +27,7 @@ import lombok.Setter;
 @Setter
 @Builder
 @Table(name = "Reservation", uniqueConstraints = {
-		@UniqueConstraint(name = "UniqueReservation", columnNames = { "room_id", "checkInDate" }) })
+		@UniqueConstraint(name = "UniqueReservation", columnNames = { "room_id", "checkInDate", "checkOutDate"}) })
 public class Reservation {
 
 	@Id
@@ -37,8 +37,8 @@ public class Reservation {
 	@Column(nullable = false, name = "checkInDate")
 	private String checkInDate;
 
-//	@Column(nullable = false)
-//	private String checkOutDate;
+	@Column(nullable = false)
+	private String checkOutDate;
 
 	@Column(nullable = false)
 	@NotNull(message = "성인 고객 1명 이상 선택해야 합니다.")
@@ -59,8 +59,12 @@ public class Reservation {
 	@JoinColumn(name = "user_id")
 	private ResortUser reservationUser; // 예약자
 
+	public String getRoomType() {
+	    return roomId.getType();
+	}
+	
 	public Room getRoom() {
-		return roomId;
+	    return roomId;
 	}
 	
 	public ResortUser getUser() {

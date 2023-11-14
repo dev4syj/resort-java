@@ -9,7 +9,7 @@
 	document.addEventListener('DOMContentLoaded', function () {
 		var calendarEl = document.getElementById('calendar');
 
-		// 서버로부터 이벤트 데이터를 비동기적으로 가져오기
+		// 서버로부터 이벤트 데이터 가져오기
 		var request = $.ajax({
 			url: "/event",
 			method: "GET"
@@ -19,21 +19,8 @@
 			// 캘린더 초기화
 			var calendar = new FullCalendar.Calendar(calendarEl, {
 				initialView: 'dayGridMonth',
-				locale: 'ko',
-				dateClick: function (info) {
-					var clickedDate = info.dateStr;
-					var selectedDate = new Date(clickedDate);
-					var today = new Date();
-
-					today.setHours(0, 0, 0, 0);
-					selectedDate.setHours(0, 0, 0, 0);
-
-					if (selectedDate < today) {
-						alert('이전 날짜는 선택할 수 없습니다. 다시 선택해주세요.');
-					} else {
-						window.location.href = '/reservation?selectedDate=' + clickedDate;
-					}
-				}
+				locale: 'ko'
+				
 			});
 
 			// FullCalendar에 이벤트 추가

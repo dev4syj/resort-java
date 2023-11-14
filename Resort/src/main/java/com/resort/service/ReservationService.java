@@ -23,7 +23,6 @@ public class ReservationService {
 	private final ReservationRepository reservationRepository;
 
 	public void newReservation(Reservation reservation, ResortUser user) {
-
 		reservation.setReservationDate(LocalDate.now());
 		reservation.setReservationUser(user);
 		reservationRepository.save(reservation);
@@ -31,27 +30,35 @@ public class ReservationService {
 
 	public Reservation reservationConfirmed(ResortUser user) {
 		Reservation reservationConfirmed = reservationRepository
-				.findTopByReservationUserOrderByReservationDateDesc(user);
+				.findTopByReservationUserOrderByReservationIdDesc(user);
 
 		return reservationConfirmed;
 	}
-
+	
+	public int checkDuplicateReservations(Reservation reservation) {
+        return reservationRepository.countConflictingReservations(reservation.getRoom().getRoomId(), reservation.getCheckInDate(), reservation.getCheckOutDate());
+    }
+	
 	public List<Map<String, Object>> getEventList() {
 		List<Reservation> reservationList = reservationRepository.findAll();
-
-		Map<String, Object> event = new HashMap<String, Object>();
 		List<Map<String, Object>> eventList = new ArrayList<Map<String, Object>>();
-		// 이벤트 1
-		event.put("start", LocalDate.now());
-		event.put("title", "테스트");
-		event.put("end", LocalDate.now().plusDays(2).atStartOfDay()); // 하루 끝으로 설정
-		eventList.add(event);
 
 		for (Reservation reservation : reservationList) {
 			Map<String, Object> events = new HashMap<>();
-			event.put("start", reservation.getCheckInDate());
-			event.put("title", "Room " + reservation.getRoom().getRoomId());
-			event.put("end", LocalDate.parse(reservation.getCheckInDate()).plusDays(1).atStartOfDay());
+
+			events.put("start", reservation.getCheckInDate());
+			events.put("title", reservation.getRoomType());
+			events.put("end", reservation.getCheckOutDate());
+			
+			String color = "#cfd48d";
+			if (reservation.getRoom().getRoomId() == 1) {
+				color = "#4b6d49";
+			} else if (reservation.getRoom().getRoomId() == 2) {
+				color = "#809c62";
+			} else if (reservation.getRoom().getRoomId() == 3) {
+				color = "#c5d67c";
+			}
+			events.put("color", color);
 			eventList.add(events);
 		}
 

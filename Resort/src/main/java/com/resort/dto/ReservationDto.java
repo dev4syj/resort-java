@@ -29,7 +29,7 @@ public class ReservationDto {
 		
 		private String checkInDate;
 		
-//		private String checkOutDate;
+		private String checkOutDate;
 		
 		private LocalDate reservationDate;
 		
@@ -42,7 +42,7 @@ public class ReservationDto {
         							.roomId(roomId)
         							.reservationUser(reservationUser)
         							.checkInDate(checkInDate)
-        							//.checkOutDate(checkOutDate)
+        							.checkOutDate(checkOutDate)
         							.reservationDate(reservationDate)
         							.build();
 
@@ -59,7 +59,7 @@ public class ReservationDto {
 		private final Room roomId;
 		private final ResortUser reservationUser;
 		private final String checkInDate;
-		//private final String checkOutDate;
+		private final String checkOutDate;
 		private final LocalDate reservationDate;
 
 		// Entity -> Dto
@@ -70,7 +70,7 @@ public class ReservationDto {
 			this.roomId = reservation.getRoomId();
 			this.reservationUser = reservation.getReservationUser();
 			this.checkInDate = reservation.getCheckInDate();
-			//this.checkOutDate = reservation.getCheckOutDate();
+			this.checkOutDate = reservation.getCheckOutDate();
 			this.reservationDate = reservation.getReservationDate();
 		}
 	}

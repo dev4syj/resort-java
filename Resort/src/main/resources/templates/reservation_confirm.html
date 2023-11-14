@@ -32,6 +32,10 @@
 						<td th:text="${reservationConfirmed.checkInDate}"></td>
 					</tr>
 					<tr>
+						<th scope="row">Check-out Date</th>
+						<td th:text="${reservationConfirmed.checkOutDate}"></td>
+					</tr>
+					<tr>
 						<th scope="row">Adults</th>
 						<td th:text="${reservationConfirmed.adult}"></td>
 					</tr>
@@ -47,7 +51,7 @@
 			</table>
 
 			<div class="d-flex justify-content-end mt-3">
-				<a href="/status" class="btn btn-secondary my-2 me-2">Back</a>
+				<a href="/status" class="btn btn-secondary my-2 me-2">Main</a>
 			</div>
 		</div>
 	</div>

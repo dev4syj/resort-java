@@ -73,9 +73,9 @@
 								<input th:field="*{checkInDate}" type="text" class="form-control" readonly>
 							</div>
 							<div class="mb-3">
-								<label for="adults" class="form-label">Adult</label>
+								<label for="adult" class="form-label">Adult</label>
 								<div class="pro-qty"><input th:field="*{adult}" type="number" min="1" max="4" step="1"
-										th:value="${adult}" class="form-control">
+										th:field="*{adult}" class="form-control">
 								</div>
 								<div th:if="${#fields.hasErrors('adult')}" th:errors="*{adult}"
 									class="alert alert-danger" role="alert"></div>
@@ -107,36 +107,6 @@
 
 	<!-- Footer -->
 	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
-
-	<!--	 Date Range Picker 
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css">
-
-	<script type="text/javascript">
-		$(document).ready(function () {
-			$('#date-range').daterangepicker({
-				"locale": {
-					"format": "YYYY-MM-DD",
-					"separator": " ~ ",
-					"applyLabel": "확인",
-					"cancelLabel": "취소",
-					"fromLabel": "From",
-					"toLabel": "To",
-					"customRangeLabel": "Custom",
-					"weekLabel": "W",
-					"daysOfWeek": ["일", "월", "화", "수", "목", "금", "토"],
-					"monthNames": ["1월", "2월", "3월", "4월", "5월", "6월", "7월", "8월", "9월", "10월", "11월", "12월"],
-				},
-				"startDate": new Date(),
-				"endDate": new Date(),
-				"drops": "auto"
-			}, function (start, end, label) {
-				console.log('New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')');
-			});
-		});
-	</script>-->
 
 </body>
 
