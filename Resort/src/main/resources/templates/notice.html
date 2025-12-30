@@ -28,6 +28,9 @@
 					</tr>
 				</thead>
 				<tbody id="tbody">
+					<tr th:if="${list.isEmpty()}">
+						<td colspan="5" class="text-center py-4">등록된 공지사항이 없습니다.</td>
+					</tr>
 					<tr th:each="notice, loop : ${list}">
 						<td th:text="${notice.postId}"></td>
 						<td>
