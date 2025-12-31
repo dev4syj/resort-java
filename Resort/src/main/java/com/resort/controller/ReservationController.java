@@ -1,8 +1,10 @@
 package com.resort.controller;
 
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -10,11 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.resort.domain.Reservation;
 import com.resort.domain.ResortUser;
+import com.resort.domain.Room;
 import com.resort.repository.ReservationRepository;
 import com.resort.service.ReservationService;
 import com.resort.service.UserService;
@@ -133,6 +138,68 @@ public class ReservationController {
 		Reservation reservation = reservationService.reservationConfirmed(user);
 		model.addAttribute("reservationConfirmed", reservation);
 		return "reservation_confirm";
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/admin/reservation/{id}")
+	public String adminReservationDetail(@PathVariable("id") Long id, Model model) {
+		Optional<Reservation> reservation = reservationService.getReservation(id);
+		if (reservation.isEmpty()) {
+			return "redirect:/status";
+		}
+		List<Room> rooms = reservationService.getAllRooms();
+		model.addAttribute("reservation", reservation.get());
+		model.addAttribute("rooms", rooms);
+		return "admin_reservation_edit";
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/admin/reservation/{id}")
+	public String adminReservationUpdate(@PathVariable("id") Long id,
+			@RequestParam("checkInDate") String checkInDate,
+			@RequestParam("checkOutDate") String checkOutDate,
+			@RequestParam("adult") int adult,
+			@RequestParam("children") int children,
+			@RequestParam("roomId") Long roomId) {
+		reservationService.updateReservation(id, checkInDate, checkOutDate, adult, children, roomId);
+		return "redirect:/status";
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/admin/reservation/{id}/delete")
+	public String adminReservationDelete(@PathVariable("id") Long id) {
+		reservationService.deleteReservation(id);
+		return "redirect:/status";
+	}
+
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/admin/reservation/{id}/json")
+	@ResponseBody
+	public Map<String, Object> adminReservationJson(@PathVariable("id") Long id) {
+		Map<String, Object> result = new HashMap<>();
+		Optional<Reservation> optionalReservation = reservationService.getReservation(id);
+
+		if (optionalReservation.isPresent()) {
+			Reservation reservation = optionalReservation.get();
+			result.put("success", true);
+			result.put("reservationId", reservation.getReservationId());
+			result.put("checkInDate", reservation.getCheckInDate());
+			result.put("checkOutDate", reservation.getCheckOutDate());
+			result.put("adult", reservation.getAdult());
+			result.put("children", reservation.getChildren());
+			result.put("roomType", reservation.getRoomType());
+			result.put("roomId", reservation.getRoom().getRoomId());
+
+			if (reservation.getReservationUser() != null) {
+				result.put("userName", reservation.getReservationUser().getName());
+				result.put("userPhone", reservation.getReservationUser().getPhone());
+				result.put("userEmail", reservation.getReservationUser().getEmail());
+			}
+		} else {
+			result.put("success", false);
+		}
+
+		return result;
 	}
 
 }

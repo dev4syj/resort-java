@@ -6,6 +6,8 @@
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.9/index.global.min.js'></script>
 
 <script th:inline="javascript">
+	var isAdmin = [[${#authorization.expression('hasRole(''ROLE_ADMIN'')')}]];
+
 	document.addEventListener('DOMContentLoaded', function () {
 		var calendarEl = document.getElementById('calendar');
 
@@ -19,8 +21,13 @@
 			// 캘린더 초기화
 			var calendar = new FullCalendar.Calendar(calendarEl, {
 				initialView: 'dayGridMonth',
-				locale: 'ko'
-				
+				locale: 'ko',
+				eventClick: function(info) {
+					if (isAdmin) {
+						var reservationId = info.event.id;
+						loadReservationDetail(reservationId);
+					}
+				}
 			});
 
 			// FullCalendar에 이벤트 추가
@@ -31,6 +38,35 @@
 		});
 	});
 
+	function loadReservationDetail(reservationId) {
+		$.ajax({
+			url: "/admin/reservation/" + reservationId + "/json",
+			method: "GET",
+			success: function(data) {
+				if (data.success) {
+					$('#modalReservationId').text(data.reservationId);
+					$('#modalUserName').text(data.userName || '-');
+					$('#modalUserPhone').text(data.userPhone || '-');
+					$('#modalUserEmail').text(data.userEmail || '-');
+					$('#modalRoomType').text(data.roomType);
+					$('#modalCheckIn').text(data.checkInDate);
+					$('#modalCheckOut').text(data.checkOutDate);
+					$('#modalAdult').text(data.adult);
+					$('#modalChildren').text(data.children);
+
+					$('#editBtn').attr('href', '/admin/reservation/' + reservationId);
+					$('#deleteForm').attr('action', '/admin/reservation/' + reservationId + '/delete');
+
+					$('#reservationModal').modal('show');
+				} else {
+					alert('예약 정보를 불러올 수 없습니다.');
+				}
+			},
+			error: function() {
+				alert('예약 정보를 불러오는 중 오류가 발생했습니다.');
+			}
+		});
+	}
 </script>
 
 <body>
@@ -54,6 +90,67 @@
 			<div id='calendar' class="wow fadeInUp"></div>
 		</div>
 	</div>
+
+	<!-- Reservation Detail Modal (Admin Only) -->
+	<div class="modal fade" id="reservationModal" tabindex="-1" aria-labelledby="reservationModalLabel" aria-hidden="true"
+		 sec:authorize="hasRole('ADMIN')">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="reservationModalLabel">예약 상세 정보</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<table class="table table-borderless">
+						<tr>
+							<th width="30%">예약번호</th>
+							<td id="modalReservationId"></td>
+						</tr>
+						<tr>
+							<th>예약자</th>
+							<td id="modalUserName"></td>
+						</tr>
+						<tr>
+							<th>연락처</th>
+							<td id="modalUserPhone"></td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td id="modalUserEmail"></td>
+						</tr>
+						<tr>
+							<th>객실</th>
+							<td id="modalRoomType"></td>
+						</tr>
+						<tr>
+							<th>체크인</th>
+							<td id="modalCheckIn"></td>
+						</tr>
+						<tr>
+							<th>체크아웃</th>
+							<td id="modalCheckOut"></td>
+						</tr>
+						<tr>
+							<th>성인</th>
+							<td id="modalAdult"></td>
+						</tr>
+						<tr>
+							<th>어린이</th>
+							<td id="modalChildren"></td>
+						</tr>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<form id="deleteForm" method="post" style="display:inline;" onsubmit="return confirm('정말 취소하시겠습니까?');">
+						<button type="submit" class="btn btn-danger">예약 취소</button>
+					</form>
+					<a id="editBtn" href="#" class="btn btn-primary">수정</a>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<!-- Footer -->
 	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
 
