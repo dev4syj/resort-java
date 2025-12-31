@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zxx">
+
+<!-- Header -->
+<th:block th:replace="~{fragments/header :: headerFragment}"></th:block>
+
+<body>
+	<!-- Navbar -->
+	<nav th:replace="~{navbar :: navbarFragment}"></nav>
+
+	<!-- Page Header -->
+	<div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+		<div class="container text-center py-5">
+			<h1 class="display-3 text-white mb-4 animated slideInDown">Edit Reservation</h1>
+		</div>
+	</div>
+
+	<div id="wrapper">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-6">
+					<h3 class="mb-4">예약 수정</h3>
+					<form th:action="@{|/admin/reservation/${reservation.reservationId}|}" method="post">
+						<div class="mb-3">
+							<label class="form-label">예약번호</label>
+							<input type="text" class="form-control" th:value="${reservation.reservationId}" readonly>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">예약자</label>
+							<input type="text" class="form-control" th:value="${reservation.reservationUser?.name}" readonly>
+						</div>
+						<div class="mb-3">
+							<label class="form-label">연락처</label>
+							<input type="text" class="form-control" th:value="${reservation.reservationUser?.phone}" readonly>
+						</div>
+						<div class="mb-3">
+							<label for="roomId" class="form-label">객실</label>
+							<select name="roomId" id="roomId" class="form-select">
+								<option th:each="room : ${rooms}"
+										th:value="${room.roomId}"
+										th:text="${room.type}"
+										th:selected="${room.roomId == reservation.room.roomId}"></option>
+							</select>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="checkInDate" class="form-label">체크인</label>
+								<input type="text" id="checkInDate" name="checkInDate" class="form-control" th:value="${reservation.checkInDate}">
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="checkOutDate" class="form-label">체크아웃</label>
+								<input type="text" id="checkOutDate" name="checkOutDate" class="form-control" th:value="${reservation.checkOutDate}">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="adult" class="form-label">성인</label>
+								<input type="number" id="adult" name="adult" class="form-control" min="1" max="4" th:value="${reservation.adult}">
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="children" class="form-label">어린이</label>
+								<input type="number" id="children" name="children" class="form-control" min="0" max="4" th:value="${reservation.children}">
+							</div>
+						</div>
+						<div class="d-flex justify-content-end mt-4">
+							<a href="/status" class="btn btn-secondary me-2">취소</a>
+							<button type="submit" class="btn btn-primary">저장</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<th:block th:replace="~{fragments/footer :: footerFragment}"></th:block>
+
+	<!-- Date Picker -->
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$.datepicker.setDefaults($.datepicker.regional['ko']);
+
+			$("#checkInDate").datepicker({
+				changeMonth: true,
+				changeYear: true,
+				nextText: '다음 달',
+				prevText: '이전 달',
+				dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+				monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+				monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+				dateFormat: "yy-mm-dd",
+				onClose: function (selectedDate) {
+					$("#checkOutDate").datepicker("option", "minDate", selectedDate);
+				}
+			});
+
+			$("#checkOutDate").datepicker({
+				changeMonth: true,
+				changeYear: true,
+				nextText: '다음 달',
+				prevText: '이전 달',
+				dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'],
+				dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
+				monthNamesShort: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+				monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+				dateFormat: "yy-mm-dd",
+				onClose: function (selectedDate) {
+					$("#checkInDate").datepicker("option", "maxDate", selectedDate);
+				}
+			});
+		});
+	</script>
+
+</body>
+
+</html>
