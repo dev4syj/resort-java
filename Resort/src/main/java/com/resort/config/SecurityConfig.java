@@ -28,7 +28,15 @@ public class SecurityConfig {
 				// 로그인 설정 -> 로그인 성공 시 루트 url로 이동
 				.formLogin((formLogin) -> formLogin.loginPage("/login").defaultSuccessUrl("/"))
 				.logout((logout) -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-						.logoutSuccessUrl("/").invalidateHttpSession(true));
+						.logoutSuccessUrl("/").invalidateHttpSession(true))
+				// 접근 거부 시 메인으로 리다이렉트
+				.exceptionHandling((exceptionHandling) -> exceptionHandling
+						.accessDeniedHandler((request, response, accessDeniedException) -> {
+							response.sendRedirect("/");
+						})
+						.authenticationEntryPoint((request, response, authException) -> {
+							response.sendRedirect("/");
+						}));
 
 		return http.build();
 	}
