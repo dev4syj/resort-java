@@ -77,6 +77,7 @@ public class ReservationController {
 
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/status")
 	public String status(Model model) {
 		List<Reservation> reservations = reservationRepository.findAll();
@@ -84,7 +85,8 @@ public class ReservationController {
 		return "status";
 	}
 
-	@GetMapping("/event") // ajax 데이터 전송 URL
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/event")
 	public @ResponseBody List<Map<String, Object>> getEvent() {
 		return reservationService.getEventList();
 	}
